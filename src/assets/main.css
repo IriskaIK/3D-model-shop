@@ -1,0 +1,10 @@
+*{
+    transition: background-color .2s linear;
+    font-family: 'Inter', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
+    
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
