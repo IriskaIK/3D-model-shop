@@ -15,6 +15,13 @@
 
             <v-card-title>
                 {{this.title}}
+                <v-spacer></v-spacer>
+                <div class="product-price">
+                    {{this.price}} {{this.currency}}
+                </div>
+                
+                
+                
             </v-card-title>
 
             <v-card-subtitle>
@@ -24,7 +31,7 @@
                 <v-chip class="chip-item" v-for="item in tags" >{{item}}</v-chip>
             </v-card-text>
             <v-card-actions>
-                <addToCartBtn :productId="this.productId"></addToCartBtn>
+                <addToCartBtn :productId="this.productId" :name="this.title" :price="this.price" :currency="this.currency"></addToCartBtn>
                 <addToLikedBtn :productId="this.productId"></addToLikedBtn>
                 <v-spacer></v-spacer>
                 <seeMoreBtn :productId="this.productId"></seeMoreBtn>
@@ -39,6 +46,8 @@ import addToCartBtn from './addToCartBtn.vue';
 import addToLikedBtn from './addToLikedBtn.vue';
 import seeMoreBtn from './seeMoreBtn.vue';
 export default {
+
+    
     components:{
         addToCartBtn,
         addToLikedBtn,
@@ -51,13 +60,16 @@ export default {
         subtitle: String,
         price: String,
         tags : Array,
-        productId: String
+        productId: String,
+        currency : String,
+        // isLiked : Boolean,
+        // isInCart: Boolean
     },
     data() {
         return {
  
         }
-    },
+    }
 
 }
 </script>
@@ -74,6 +86,8 @@ export default {
     margin-right: 1%;
     margin-top: 1%;
 }
-
+.product-price{
+    font-size: 18px;
+}
 
 </style>

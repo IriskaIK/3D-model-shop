@@ -3,7 +3,7 @@
         <v-btn variant="outlined" ripple icon="mdi-heart" size="35" class="add-btn"
         :class="{'add-btn-hover': isHovering }" 
         v-bind="props"
-        @click="this.addToLikedSnackBar = true">
+        @click="this.addToLiked()">
         
         </v-btn>
     </v-hover>
@@ -36,6 +36,11 @@ export default {
             addToLikedSnackBar: false
         }
     },
+    methods:{
+        addToLiked(){
+            this.addToLikedSnackBar = true
+        }
+    }
     
 }
 </script>

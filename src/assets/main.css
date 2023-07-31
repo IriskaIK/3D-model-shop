@@ -8,3 +8,7 @@
 ::-webkit-scrollbar{
     display: none;
 }
+.v-input__details{
+    display: none;
+}
+

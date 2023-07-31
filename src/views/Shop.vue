@@ -30,7 +30,8 @@ export default {
                 {
                     title:"Something",
                     subtitle:"Forbiden stars",
-                    price:"20",
+                    price:"19.99",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['apple', 'banana', 'orange'],
                     id:'023fss'
@@ -38,139 +39,156 @@ export default {
                 {
                     title:"Something",
                     subtitle:"Undaunted",
-                    price:"20",
+                    price:"13.49",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
+                    id:'024fss'
+                },
+                {
+                    title:"Something",
+                    subtitle:"Company of Heroes",
+                    price:"20.99",
+                    currency : 'USD',
+                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    tags:['red', 'blue', 'green', 'yellow'],
+                    id:'025fss'
+                },
+                {
+                    title:"Something",
+                    subtitle:"Forbiden stars",
+                    price:"10.99",
+                    currency : 'USD',
+                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    tags:['apple', 'banana', 'orange'],
+                    id:'026fss'
+                },
+                {
+                    title:"Something",
+                    subtitle:"Undaunted",
+                    price:"4.99",
+                    currency : 'USD',
+                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    tags:['cat', 'dog', 'elephant', 'giraffe'],
+                    id:'027fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Company of Heroes",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
+                    id:'028fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Forbiden stars",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['apple', 'banana', 'orange'],
-                    id:'023fss'
+                    id:'029fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Undaunted",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
+                    id:'030fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Company of Heroes",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
+                    id:'031fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Forbiden stars",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['apple', 'banana', 'orange'],
-                    id:'023fss'
+                    id:'123fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Undaunted",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
+                    id:'223fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Company of Heroes",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
+                    id:'323fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Forbiden stars",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['apple', 'banana', 'orange'],
-                    id:'023fss'
+                    id:'423fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Undaunted",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
+                    id:'523fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Company of Heroes",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
+                    id:'623fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Forbiden stars",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['apple', 'banana', 'orange'],
-                    id:'023fss'
+                    id:'723fss'
                 },
                 {
                     title:"Something",
                     subtitle:"Undaunted",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
-                },
-                {
-                    title:"Something",
-                    subtitle:"Company of Heroes",
-                    price:"20",
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
-                    tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
-                },
-                {
-                    title:"Something",
-                    subtitle:"Forbiden stars",
-                    price:"20",
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
-                    tags:['apple', 'banana', 'orange'],
-                    id:'023fss'
-                },
-                {
-                    title:"Something",
-                    subtitle:"Undaunted",
-                    price:"20",
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
-                    tags:['cat', 'dog', 'elephant', 'giraffe'],
-                    id:'023fss'
+                    id:'823fss'
                     
                 },
                 {
                     title:"Something",
                     subtitle:"Company of Heroes",
                     price:"20",
+                    currency : 'USD',
                     src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
-                    id:'023fss'
+                    id:'923fss'
                 },
             ]
         }

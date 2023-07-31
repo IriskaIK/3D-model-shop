@@ -12,7 +12,7 @@
 
           <NavBarLink title='Shop' value='shop' icon='mdi-shopping' link='/shop'></NavBarLink>
 
-          <NavBarLink title='Cart' value='cart' icon='mdi-cart' link='/cart' :badge='true'></NavBarLink>
+          <NavBarLink title='Cart' value='cart' icon='mdi-cart' link='/cart' :badge='isShowen'></NavBarLink>
 
 
           <div v-if='isAuth' >
@@ -54,14 +54,18 @@ import NavBarAvatarComponent from './components/NavBarAvatarComponent.vue';
 
 import { useTheme } from "vuetify";
 
+import { useCartStore } from '../../stores/cart';
+
 export default {
+
   components: {
     NavBarLink,
     NavBarAvatarComponent
   },
   setup() {
     const theme = useTheme();
-    return { theme }
+    const store = useCartStore()
+    return { theme, store }
   },
   data() {
     return {
@@ -71,12 +75,25 @@ export default {
   },
   methods: {
     toggleTheme() {
-      console.log(1)
       this.darkMode = !this.darkMode
       this.theme.global.name.value = this.darkMode ? "dark" : "light";
     }
   },
+  computed:{
+    isShowen(){
+      console.log(this.store.getListLenght)
+      if(this.store.getListLenght == 0){
+        return false
+      }
+      console.log(1)
+
+      return true
+    }
+  }
+  
+
 }
+
 </script>
 <style>
 .bottom_controls {
