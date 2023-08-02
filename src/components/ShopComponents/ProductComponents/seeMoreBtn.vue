@@ -1,6 +1,6 @@
 <template >
     <v-btn class="btn" variant="outlined" ripple prepend-icon="mdi-eye" :to="'product/'+this.productId"> 
-        See more
+        More
     </v-btn>
 </template>
 <script>

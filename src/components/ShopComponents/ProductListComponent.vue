@@ -34,7 +34,7 @@ export default {
                     subtitle:"Undaunted",
                     price:"13.49",
                     currency : 'USD',
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    src:'https://cdn.vox-cdn.com/thumbor/X1eBU-vUggrzhkBJF5YaN48nppo=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/5933177/rebellion_naboo_white_point_watermark.0.jpg',
                     tags:['cat', 'dog', 'elephant', 'giraffe'],
                     id:'024fss'
                 },
@@ -43,7 +43,7 @@ export default {
                     subtitle:"Company of Heroes",
                     price:"20.99",
                     currency : 'USD',
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    src:'https://cf.geekdo-images.com/iCd6hMGDzsQ_UXh00iKsJA__opengraph/img/WZYCio8Ht3LjQ5-rEX1_nM6nIWM=/0x668:1000x1193/fit-in/1200x630/filters:strip_icc()/pic4602347.jpg',
                     tags:['red', 'blue', 'green', 'yellow'],
                     id:'025fss'
                 },
@@ -52,7 +52,7 @@ export default {
                     subtitle:"Forbiden stars",
                     price:"10.99",
                     currency : 'USD',
-                    src:'https://cf.geekdo-images.com/aGMHRdqHzjOzekmIrLsaZQ__opengraph/img/kfVvVhr3agOVmtD79dC7jBwa4fA=/fit-in/1200x630/filters:strip_icc()/pic2454326.jpg',
+                    src:'https://pbs.twimg.com/media/FWcEdP0XoAUFzdT.jpg',
                     tags:['apple', 'banana', 'orange'],
                     id:'026fss'
                 },

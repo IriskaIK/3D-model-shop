@@ -1,10 +1,17 @@
 <template lang="">
     <tr>
-        <td>{{this.ItemId + 1}}</td>
-        <td>{{this.name}}</td>
+        <td width='50px'>
+            <v-img 
+            :src='this.src'
+            height="50px"
+            width='50px'
+            cover
+            ></v-img>
+        </td>
+        <td> {{this.name}}</td>
         <td><div class='price-holder'>{{this.price}} <div class='price-currency'>{{this.currency}} </div></div></td>
         <td>
-            <v-checkbox hide-details v-model='this.selected'>
+            <v-checkbox hide-details v-model='store.getProductById(this.productID).isSelected'>
 
             </v-checkbox>
         </td>
@@ -15,35 +22,37 @@
 </template>
 <script>
 import { useCartStore } from '../../../stores/cart';
-
+import { storeToRefs } from 'pinia'
 export default {
 
     setup() {
         const store = useCartStore()
-        return {store}
+        const {getProductById } = storeToRefs(store)
+        return {store, getProductById}
     }, 
 
     data() {
         return {
-            selected: this.isSelected
         }
     },
     props:{
         name:String,
         price: String,
         currency: String,
-        isSelected: Boolean,
-        ItemId: Number,
+        src: String,
         productID : String
     },
     methods:{
         deleteItem(){
             this.store.removeProduct({id:this.productID})
+        },
+        changeSelected(){
+            this.store.switchSelection({id:this.productID})
         }
     },
     watch:{
         selected(){
-            this.store.switchSelection({id:this.productID})
+            
         }
     }
 }

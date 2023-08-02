@@ -20,7 +20,7 @@
             </thead>
             <tbody>
 
-            <listItemComponent v-for='(item, index) in store.getProducts' :ItemId="index" :productID='item.id' :name='item.name' :price='item.price' :currency='item.currency' :isSelected='item.isSelected'></listItemComponent>
+            <listItemComponent v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id' :src='item.src' :name='item.name' :price='item.price' :currency='item.currency'></listItemComponent>
             <totalPriceItemComponent :totalPrice='store.getTotalPrice'></totalPriceItemComponent>
             
             

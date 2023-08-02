@@ -4,7 +4,7 @@
             v-if="!isInCart"
             > 
                 
-                Add to cart
+                To cart
     </v-btn>
     <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
             v-else
@@ -44,7 +44,8 @@ export default {
         productId: String,
         price: String,
         name : String,
-        currency : String
+        currency : String,
+        src: String
     },
     data() {
         return {
@@ -54,7 +55,8 @@ export default {
     methods:{
         addToCart(){
             this.addToCartSnackBar = true
-            this.store.addProduct({name: this.name, price: this.price, id: this.productId, currency :this.currency})
+            console.log(this.src)
+            this.store.addProduct({name: this.name, price: this.price, id: this.productId, currency :this.currency, src: this.src})
         }
     },
     computed:{

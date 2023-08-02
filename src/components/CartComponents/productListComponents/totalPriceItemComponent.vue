@@ -10,7 +10,7 @@
 <script>
 export default {
     props:{
-        totalPrice: Number
+        totalPrice: String
     }
 }
 </script>

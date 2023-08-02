@@ -27,11 +27,11 @@
             <v-card-subtitle>
                 {{this.subtitle}}
             </v-card-subtitle>
-            <v-card-text>
+            <v-card-text style="min-height: 100px;">
                 <v-chip class="chip-item" v-for="item in tags" >{{item}}</v-chip>
             </v-card-text>
             <v-card-actions>
-                <addToCartBtn :productId="this.productId" :name="this.title" :price="this.price" :currency="this.currency"></addToCartBtn>
+                <addToCartBtn :src="this.src" :productId="this.productId" :name="this.title" :price="this.price" :currency="this.currency"></addToCartBtn>
                 <addToLikedBtn :productId="this.productId"></addToLikedBtn>
                 <v-spacer></v-spacer>
                 <seeMoreBtn :productId="this.productId"></seeMoreBtn>

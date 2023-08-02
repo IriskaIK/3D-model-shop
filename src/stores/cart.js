@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
-    /** @type {{ name: string, price: string, id: string, isSelected: boolean, currency: string }[]} */
+    /** @type {{ name: string, price: string, id: string, isSelected: boolean, currency: string, src: string }[]} */
     products: [],
   }),
   getters: {
@@ -48,7 +48,8 @@ export const useCartStore = defineStore("cart", {
         price: product.price,
         id: product.id,
         isSelected: true,
-        currency: product.currency
+        currency: product.currency,
+        src: product.src
       });
     },
     setProducts(products){
