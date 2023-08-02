@@ -48,7 +48,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .price-holder{
     display: flex;
     align-items: baseline;

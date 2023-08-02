@@ -5,7 +5,7 @@
             <thead>
             <tr>
                 <th class="">
-                    Id
+                    #
                 </th>
                 <th class="">
                     Name
@@ -21,20 +21,23 @@
             <tbody>
 
             <listItemComponent v-for='(item, index) in store.getProducts' :ItemId="index" :productID='item.id' :name='item.name' :price='item.price' :currency='item.currency' :isSelected='item.isSelected'></listItemComponent>
+            <totalPriceItemComponent :totalPrice='store.getTotalPrice'></totalPriceItemComponent>
+            
             
             </tbody>
         </v-table>
-
 
 
     </v-card>
 </template>
 <script>
 import listItemComponent from './productListComponents/listItemComponent.vue';
+import totalPriceItemComponent from './productListComponents/totalPriceItemComponent.vue';
 import { useCartStore } from '../../stores/cart';
 export default {
     components:{
-        listItemComponent
+        listItemComponent,
+        totalPriceItemComponent
     },
     setup() {
         const store = useCartStore()

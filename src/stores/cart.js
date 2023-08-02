@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
-    /** @type {{ name: string, price:string, id: string, isSelected: boolean, currency: string }[]} */
+    /** @type {{ name: string, price: string, id: string, isSelected: boolean, currency: string }[]} */
     products: [],
   }),
   getters: {
@@ -17,6 +17,15 @@ export const useCartStore = defineStore("cart", {
         }
         return false
       })
+    },
+    getTotalPrice(state){
+      let price = 0
+      state.products.forEach((product)=>{
+        if (product.isSelected){
+          price += parseFloat(product.price) 
+        }
+      })
+      return price.toFixed(2)
     },
     getListLenght(state){
       let len = (state.products.length)
