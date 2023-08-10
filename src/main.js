@@ -13,6 +13,8 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+import VueGoogleMaps from '@fawmi/vue-google-maps'
+let gKey = import.meta.env.VITE_API_KEY
 
 
 const vuetify = createVuetify({
@@ -39,5 +41,10 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(vuetify)
+app.use(VueGoogleMaps, {
+    load: {
+        key: gKey,
+    },
+})
 
 app.mount('#app')

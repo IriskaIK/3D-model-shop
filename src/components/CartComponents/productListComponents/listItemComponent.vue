@@ -1,15 +1,29 @@
 <template lang="">
     <tr>
-        <td width='50px'>
+       
+        <td width='50px' >
             <v-img 
             :src='this.src'
             height="50px"
             width='50px'
             cover
+            
             ></v-img>
         </td>
+        
         <td> {{this.name}}</td>
-        <td><div class='price-holder'>{{this.price}} <div class='price-currency'>{{this.currency}} </div></div></td>
+        <td>
+            <div class='price-holder'>
+                {{this.price}} 
+                <div class='price-currency'>
+                    {{this.currency}} 
+                </div>
+            </div>
+        </td>
+
+        <quantityInputComponent :productID='this.productID'  :store=store></quantityInputComponent>
+
+        
         <td>
             <v-checkbox hide-details v-model='store.getProductById(this.productID).isSelected'>
 
@@ -23,13 +37,18 @@
 <script>
 import { useCartStore } from '../../../stores/cart';
 import { storeToRefs } from 'pinia'
+import quantityInputComponent from './quantityInputComponent.vue'
 export default {
 
     setup() {
         const store = useCartStore()
+        console.log(typeof store)
         const {getProductById } = storeToRefs(store)
         return {store, getProductById}
     }, 
+    components:{
+        quantityInputComponent
+    },
 
     data() {
         return {
@@ -40,7 +59,8 @@ export default {
         price: String,
         currency: String,
         src: String,
-        productID : String
+        productID : String,
+        quantity : Number,
     },
     methods:{
         deleteItem(){
@@ -61,6 +81,9 @@ export default {
 .price-holder{
     display: flex;
     align-items: baseline;
+}
+.quantity-holder{
+    text-align: center;
 }
 .price-currency{
     font-size: 13px;

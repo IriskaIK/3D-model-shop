@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
-    /** @type {{ name: string, price: string, id: string, isSelected: boolean, currency: string, src: string }[]} */
+    /** @type {{ name: string, price: string, id: string, isSelected: boolean, currency: string, src: string, quantity: number}[]} */
     products: [],
   }),
   getters: {
@@ -22,7 +22,7 @@ export const useCartStore = defineStore("cart", {
       let price = 0
       state.products.forEach((product)=>{
         if (product.isSelected){
-          price += parseFloat(product.price) 
+          price += parseFloat(product.price) * product.quantity
         }
       })
       return price.toFixed(2)
@@ -49,7 +49,8 @@ export const useCartStore = defineStore("cart", {
         id: product.id,
         isSelected: true,
         currency: product.currency,
-        src: product.src
+        src: product.src,
+        quantity : 1
       });
     },
     setProducts(products){
@@ -74,5 +75,26 @@ export const useCartStore = defineStore("cart", {
       });
       this.products[ind].isSelected = !this.products[ind].isSelected
     },
+    increaseQuantity(product){
+      let ind = this.products.findIndex((item) => {
+        if (item.id == product.id) {
+          return true;
+        }
+        return false;
+      });
+      this.products[ind].quantity += 1
+    },
+    decreaseQuantity(product){
+      let ind = this.products.findIndex((item) => {
+        if (item.id == product.id) {
+          return true;
+        }
+        return false;
+      });
+      if(this.products[ind].quantity > 1){
+        this.products[ind].quantity -= 1
+      }
+      
+    }
   },
 });

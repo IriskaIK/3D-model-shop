@@ -2,7 +2,6 @@
     <v-hover v-slot="{ isHovering, props }">
         <v-card 
         class="card" 
-        color="#313131" 
         :elevation="isHovering ? 12 : 2" 
         v-bind="props"
         :class="{'on-hover': isHovering }"

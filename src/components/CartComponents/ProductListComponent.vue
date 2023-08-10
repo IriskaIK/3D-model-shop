@@ -1,17 +1,20 @@
 <template lang="">
     <v-card>
         
-        <v-table theme="dark">
+        <v-table >
             <thead>
             <tr>
                 <th class="">
-                    #
+                    
                 </th>
                 <th class="">
                     Name
                 </th>
                 <th class="">
                     Price
+                </th>
+                <th style='text-align:center;'>
+                    Quantity
                 </th>
                 <th class="">
                     Select
@@ -20,7 +23,7 @@
             </thead>
             <tbody>
 
-            <listItemComponent v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id' :src='item.src' :name='item.name' :price='item.price' :currency='item.currency'></listItemComponent>
+            <listItemComponent v-for='(item, index) in store.getProducts' :quantity='item.quantity' :id="item.id" :productID='item.id' :src='item.src' :name='item.name' :price='item.price' :currency='item.currency'></listItemComponent>
             <totalPriceItemComponent :totalPrice='store.getTotalPrice'></totalPriceItemComponent>
             
             
@@ -54,5 +57,8 @@ export default {
 <style scoped>
 .v-input__details{
     display: none;
+}
+.quantity-title{
+    text-align: center;
 }
 </style>
