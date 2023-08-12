@@ -1,13 +1,18 @@
-<template lang="">
-    <div>
-        
-    </div>
+<template>
+
+            
+    <AccountComponent></AccountComponent>
+           
+
 </template>
 <script>
+import AccountComponent from '../components/AccountComponents/AccountComponent.vue';
 export default {
-    
+    components:{
+        AccountComponent
+    }
 }
 </script>
-<style lang="">
+<style scoped>
     
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <a class="topic-name" id="most-popular">
+    <div class="topic-name" id="most-popular">
         {{this.topicName}}
-    </a>
+    </div>
     <TopicItemComponent v-for="value in this.topicContent" :name="value.name" :BgImgSrc="value.src"  :linkTo="value.linkTo" :key="value.id"></TopicItemComponent>
 </template>
 <script>

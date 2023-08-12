@@ -13,7 +13,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
-import VueGoogleMaps from '@fawmi/vue-google-maps'
+import VueGoogleMaps from 'vue-google-maps-community-fork'
 let gKey = import.meta.env.VITE_API_KEY
 
 

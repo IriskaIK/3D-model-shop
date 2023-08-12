@@ -31,9 +31,9 @@
             </v-card-text>
             <v-card-actions>
                 <addToCartBtn :src="this.src" :productId="this.productId" :name="this.title" :price="this.price" :currency="this.currency"></addToCartBtn>
-                <addToLikedBtn :productId="this.productId"></addToLikedBtn>
+                <addToWishlistBtn :src="this.src" :name="this.title" :price="this.price" :currency="this.currency" :productId="this.productId"></addToWishlistBtn>
                 <v-spacer></v-spacer>
-                <seeMoreBtn :productId="this.productId"></seeMoreBtn>
+                <seeMoreBtn  :productId="this.productId"></seeMoreBtn>
             </v-card-actions>
         
         </v-card>
@@ -42,14 +42,14 @@
 </template>
 <script>
 import addToCartBtn from './addToCartBtn.vue';
-import addToLikedBtn from './addToLikedBtn.vue';
+import addToWishlistBtn from './addToWishlistBtn.vue';
 import seeMoreBtn from './seeMoreBtn.vue';
 export default {
 
     
     components:{
         addToCartBtn,
-        addToLikedBtn,
+        addToWishlistBtn,
         seeMoreBtn
     },
 
@@ -61,8 +61,6 @@ export default {
         tags : Array,
         productId: String,
         currency : String,
-        // isLiked : Boolean,
-        // isInCart: Boolean
     },
     data() {
         return {

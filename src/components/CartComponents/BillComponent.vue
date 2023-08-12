@@ -16,7 +16,7 @@
 
     <v-divider :thickness="3" class="border-opacity-25 divider"></v-divider>
 
-    <orderBtnComponent></orderBtnComponent>
+    <orderBtnComponent :store='this.store'></orderBtnComponent>
         
 
 </template>

@@ -5,7 +5,7 @@
                 Delivery
             </v-card-title>
             <template v-slot:append>
-                <saveBtnComponent from='deliveryInfo' :status='this.btnStatus' :data='userData' :storage='this.store'></saveBtnComponent>
+                <saveBtnComponent from='deliveryInfo' :status='this.btnStatus' :data='deliveryData' :storage='this.store'></saveBtnComponent>
             </template>
            
         </v-card-item>
@@ -14,7 +14,7 @@
         <v-row>
             <v-col cols='12' md='6'>
                 <v-autocomplete
-                v-model="this.region"
+                v-model="this.deliveryData.region"
                 @update:modelValue='setRegion()'
                 :disabled='stateOfInputs.region'
                 label="Region"
@@ -24,7 +24,7 @@
             <v-col cols='12' md='6'>
                 <v-autocomplete
                 label="City"
-                v-model="this.city"
+                v-model="this.deliveryData.city"
                 @update:modelValue='setCity()'
                 :disabled='stateOfInputs.city'
                 :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
@@ -39,20 +39,20 @@
                 <v-autocomplete
                 label="Post office"
                 :disabled='stateOfInputs.office'
-                v-model="this.postOffice"
+                v-model="this.deliveryData.postOffice"
                 :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
                 ></v-autocomplete>
                 <v-card>
                     <v-card-title>
                         <div class='total-chips'>
-                            <v-chip v-if="this.region != ''">
-                                {{this.region}}
+                            <v-chip v-if="this.deliveryData.region != ''">
+                                {{this.deliveryData.region}}
                             </v-chip>
-                            <v-chip  v-if="this.city != ''">
-                                {{this.city}}
+                            <v-chip  v-if="this.deliveryData.city != ''">
+                                {{this.deliveryData.city}}
                             </v-chip>
-                            <v-chip  v-if="this.postOffice != ''">
-                                {{this.postOffice}}
+                            <v-chip  v-if="this.deliveryData.postOffice != ''">
+                                {{this.deliveryData.postOffice}}
                             </v-chip>
                         </div>
                         
@@ -78,9 +78,11 @@ export default {
     },
     data() {
         return {
-            region : '',
-            city: '',
-            postOffice: '',
+            deliveryData:{
+                region : '',
+                city: '',
+                postOffice: '',
+            },
             stateOfInputs : {
                 region: false,
                 city : true,
@@ -91,11 +93,11 @@ export default {
     },
     methods: {
         setRegion(){
-            this.city = ''
-            this.postOffice = ''
+            this.deliveryData.city = ''
+            this.deliveryData.postOffice = ''
             this.stateOfInputs.office = true
             
-            if(this.region != ''){
+            if(this.deliveryData.region != ''){
                 this.stateOfInputs.city = false
             }else{
                 this.stateOfInputs.city = true
@@ -103,14 +105,19 @@ export default {
             
         },
         setCity(){
-            this.postOffice = ''
-            if(this.city != ''){
+            this.deliveryData.postOffice = ''
+            if(this.deliveryData.city != ''){
                 this.stateOfInputs.office = false
             }
         }
     },
     computed:{
-       
+        btnStatus(){
+            if (this.deliveryData.region && this.deliveryData.city && this.deliveryData.postOffice){
+                return false
+            }
+            return true
+        }
     },
     watch:{
        

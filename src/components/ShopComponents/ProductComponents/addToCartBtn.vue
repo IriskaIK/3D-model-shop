@@ -55,7 +55,6 @@ export default {
     methods:{
         addToCart(){
             this.addToCartSnackBar = true
-            console.log(this.src)
             this.store.addProduct({name: this.name, price: this.price, id: this.productId, currency :this.currency, src: this.src})
         }
     },

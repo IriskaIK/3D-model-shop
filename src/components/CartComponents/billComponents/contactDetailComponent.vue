@@ -11,44 +11,18 @@
         </v-card-item>
         <v-container>
         <v-row>
-            <v-col cols='12' md='6'>
-                <v-text-field
-                v-model="userData.firstname"
-                :rules="firstNameRules"
-                label="First name"
-                required
-                ></v-text-field>
+            <v-col :cols="12" :md="6">
+                <contactInput label="First name" type="name" :disabled='false' @update='saveFirstNameValue'></contactInput>
             </v-col>
-            <v-col cols='12' md='6'>
-                <v-text-field
-                v-model="userData.lastname"
-                :rules="lastNameRules"
-                label="Last name"
-                required
-                ></v-text-field>
+            <v-col :cols="12" :md="6">
+                <contactInput label="Last name" type="name" :disabled='false' @update='saveLastNameValue'></contactInput>
             </v-col>
-            <v-col cols='12' md='6' class='d-flex'>
-                
-                
-                
-                <v-text-field 
-                prefix="+38"
-                label="Phone number"
-                
-                required
-                :rules=phoneNumberRules
-                v-model='userData.phone'
-                dirty
-                ></v-text-field>
+            <v-col :cols="12" :md="6">
+                <contactInput label="Email" type="email" :disabled='false' @update='saveEmailValue'></contactInput>
             </v-col>
-            <v-col cols='12' md='6'>
-                <v-text-field
-                v-model="userData.email"
-                type="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-                ></v-text-field>
+            <v-col :cols="12" :md="6">
+
+                <contactInput label="Phone" type="phone" :disabled='false' @update='savePhoneValue'></contactInput>
             </v-col>
 
         </v-row>
@@ -59,10 +33,12 @@
 </template>
 <script>
 import saveBtnComponent from './saveBtnComponent.vue';
+import contactInput from '../../inputs/contactInput.vue';
 export default {
 
     components:{
-        saveBtnComponent
+        saveBtnComponent,
+        contactInput
     },
     props:{
         store: Object
@@ -71,8 +47,8 @@ export default {
     data() {
         return {
             userData:{
-                firstname: '',
-                lastname: '',
+                firstName: '',
+                lastName: '',
                 email:'',
                 phone:'',
             },
@@ -82,90 +58,28 @@ export default {
                 lastname:false,
                 email:false,
                 phone:false
-            },
-            firstNameRules: [
-                value => {
-                    if (value) return true
-
-                    return 'Name is required.'
-                },
-                value => {
-                    if (value?.length >= 2){
-                        this.valids.firstname = true
-                        return true
-                    } 
-                    this.valids.firstname = false
-                    return false
-                },
-            ],
-            lastNameRules:[
-                value => {
-                    if (value) return true
-
-                    return 'Name is required.'
-                },
-                value => {
-                    if (value?.length >= 2){
-                        this.valids.lastname = true
-                        return true
-                    } 
-                    this.valids.lastname = false
-                    return false
-                },
-            ],
-
-            emailRules: [
-                value => {
-                    if (value) return true
-
-                    return 'E-mail is required.'
-                },
-                value => {
-                    if (/.+@.+\..+/.test(value)){
-                        this.valids.email = true
-                        return true
-                    } 
-                    this.valids.email = false
-                    return 'E-mail must be valid.'
-                },
-            ],
-            phoneNumberRules:[
-                value =>{
-                    if (value) return true
-                    return 'Phone number is required'
-                },
-                value =>{
-                    let r = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
-                    if (r.test(value)){
-                        this.valids.phone = true
-                        return true
-                    } 
-
-                    r =  /[0-9\s]|\./
-                    if(!r.test(value.charAt(value.length - 1)) || value.length >= 12){
-                        
-                        this.userData.phone = this.userData.phone.slice(0, -1)
-                    }
-                    this.valids.phone = false
-                    return 'Phone number must be valid'
-                }
-            ]
+            }
         }
     },
     methods:{
-        
-    },
-    watch:{
-        'userData.phone'(newValue, prevValue){
-            let length = newValue.length
-            if (newValue.length > prevValue.length){
-                if (length == 3 || length == 7){
-                    this.userData.phone += ' '
-                }
-            }
-            
+        savePhoneValue(content){
+            this.userData.phone = content.value
+            this.valids.phone = content.valid
+        },
+        saveEmailValue(content){
+            this.userData.email = content.value
+            this.valids.email = content.valid
+        },
+        saveFirstNameValue(content){
+            this.userData.firstName = content.value
+            this.valids.firstname = content.valid
+        },
+        saveLastNameValue(content){
+            this.userData.lastName = content.value
+            this.valids.lastname = content.valid
         }
     },
+
     computed:{
         btnStatus(){
             if (this.valids.firstname && this.valids.lastname && this.valids.email && this.valids.phone){

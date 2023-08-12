@@ -27,7 +27,8 @@ export default {
                 return
             }
             let data = {
-                ...this.data
+                ...this.data,
+                status : true
             }
             this.storage.$patch({
                 [this.from] : data
@@ -39,6 +40,10 @@ export default {
         data : {
             handler(newValue, oldValue){
                 this.isSaved = false
+                this.storage.$patch({
+                    [this.from]: {status:false}
+                }
+                    )
             },
             deep: true
         }
