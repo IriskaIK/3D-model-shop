@@ -4,7 +4,7 @@
       <NavBarComponent></NavBarComponent>
 
       <v-main style="height: 100vh" :scrollable="true">
-        <v-container>
+        <v-container class="container-margin">
           <router-view v-slot="{ Component, route  }">
             <transition name="slide" mode="out-in">
               <div :key="route">
@@ -52,6 +52,9 @@ export default {
 .slide-leave-to{
   opacity: 0;
   transform: translateX(-50%);
+}
+.container-margin{
+  margin-bottom: 100px;
 }
 
 

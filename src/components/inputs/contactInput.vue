@@ -2,6 +2,7 @@
     <v-text-field 
         :prefix="choosePrefix"
         :label="this.label"
+        :type="isPsw ? 'password' : 'text'"
         
         required
         :rules='chooseType'
@@ -11,6 +12,7 @@
     ></v-text-field>
 </template>
 <script>
+import {validatePassword, validateEmail, validateName, validatePhone} from './validators'
 export default {
     props:{
         disabled : Boolean,
@@ -23,77 +25,60 @@ export default {
             valid: false,
             nameRules: [
                 value => {
-                    if (value){
-                        this.$emit('update', {value : this.value, valid: this.valid})
-
-                        return true
-                    } 
-                    this.$emit('update', {value : this.value, valid: this.valid})
-                    return 'Name is required.'
-                },
-                value => {
-                    if (value?.length >= 2){
+                    const validation = validateName(value)
+                    if(validation.valid){
                         this.valid = true
                         this.$emit('update', {value : this.value, valid: this.valid})
-
                         return true
-                    } 
-                    this.valid = false
+                    }
                     this.$emit('update', {value : this.value, valid: this.valid})
-
-                    return false
-                },
+                    return validation.msg
+                }
+            ],
+            passwrodRules:[
+                value => {
+                    const validation = validatePassword(value)
+                    if(validation.valid){
+                        this.valid = true
+                        this.$emit('update', {value : this.value, valid: this.valid})
+                        return true
+                    }
+                    this.$emit('update', {value : this.value, valid: this.valid})
+                    return validation.msg
+                }
             ],
             
             emailRules: [
                 value => {
-                    if (value){
-                        this.$emit('update', {value : this.value, valid: this.valid})
-
-                        return true
-                    } 
-                    this.$emit('update', {value : this.value, valid: this.valid})
-                    return 'E-mail is required.'
-                },
-                value => {
-                    if (/.+@.+\..+/.test(value)){
+                    const validation = validateEmail(value)
+                    if(validation.valid){
                         this.valid = true
                         this.$emit('update', {value : this.value, valid: this.valid})
-
                         return true
-                    } 
-                    this.valid = false
+                    }
                     this.$emit('update', {value : this.value, valid: this.valid})
-                    return 'E-mail must be valid.'
+                    return validation.msg
                 },
+               
             ],
             phoneNumberRules:[
                 value =>{
-                    if (value){
-                        this.$emit('update', {value : this.value, valid: this.valid})
-                        return true
-                    } 
-                    this.$emit('update', {value : this.value, valid: this.valid})
 
-                    return 'Phone number is required'
-                },
-                value =>{
-                    let r = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
-                    if (r.test(value)){
-                        this.valid = true
-                        this.$emit('update', {value : this.value, valid: this.valid})
-                        return true
-                    } 
-
-                    r =  /[0-9\s]|\./
+                    const r =  /[0-9\s]|\./
                     if(!r.test(value.charAt(value.length - 1)) || value.length >= 12){
                         
                         this.value = this.value.slice(0, -1)
                     }
                     this.valid = false
 
+                    const validation = validatePhone(value)
+                    if(validation.valid){
+                        this.valid = true
+                        this.$emit('update', {value : this.value, valid: this.valid})
+                        return true
+                    }
                     this.$emit('update', {value : this.value, valid: this.valid})
-                    return 'Phone number must be valid'
+                    return validation.msg
                 }
             ]
         }
@@ -113,12 +98,21 @@ export default {
         }
     },
     computed:{
+        isPsw(){
+            if(this.type == 'password'){
+                return true
+            }
+            return false
+        },
         chooseType(){
             if(this.type == 'phone'){
                 return this.phoneNumberRules
             }
             if(this.type == 'email'){
                 return this.emailRules
+            }
+            if(this.type == 'password'){
+                return this.passwrodRules
             }
             
             return this.nameRules

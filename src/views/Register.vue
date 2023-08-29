@@ -1,23 +1,23 @@
-<template lang="">
+<template>
     <v-container>
         <v-row justify="center">
             <v-col md="4">
-                <LoginCardComponent></LoginCardComponent>
+                <RegisterCardComponent></RegisterCardComponent>
             </v-col>
         </v-row>
     </v-container>
+
 </template>
 <script>
-import LoginCardComponent from '../components/LoginComponents/LoginCardComponent.vue';
-
+import RegisterCardComponent from '../components/RegisterComponent/RegisterCardComponent.vue'
 
 export default {
     components:{
-        LoginCardComponent
+        RegisterCardComponent
     }
     
 }
 </script>
-<style lang="">
+<style>
     
 </style>

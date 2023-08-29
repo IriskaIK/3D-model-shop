@@ -14,7 +14,7 @@
     "vue-google-maps-community-fork": "^0.3.1",
     "vue-router": "^4.2.4",
     "vue-tel-input-vuetify": "^1.5.3",
-    "vuetify": "^3.3.9"
+    "vuetify": "^3.3.11"
   },
   "devDependencies": {
     "@mdi/font": "^7.2.96",
