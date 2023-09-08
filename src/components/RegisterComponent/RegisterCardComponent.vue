@@ -45,6 +45,7 @@
 </template>
 <script>
 import ContactInput from '../inputs/contactInput.vue';
+import { regUser } from '../../services/auth/authUser';
 import { useAccountStore } from '../../stores/account';
 
 export default {
@@ -79,7 +80,7 @@ export default {
     },
     methods:{
         async registerUser(){
-            const res = await this.store.regUser({
+            const res = await regUser({
                 password : this.password,
                 email : this.email,
                 first_name : this.name
@@ -90,8 +91,6 @@ export default {
                 this.showMessage = true
                 this.messageContent = res.msg
             }
-
-
 
         },
         saveEmailValue(content){

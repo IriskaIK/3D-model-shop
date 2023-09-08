@@ -1,8 +1,8 @@
 <template lang="">
-      <v-navigation-drawer expand-on-hover rail :permanent='true' rounded='e-xl' >
+      <v-navigation-drawer location='right' expand-on-hover rail :permanent='true' rounded='s-xl'>
         <!-- temporary='true' -->
-        <v-list v-if='isAuth'>
-          <NavBarAvatarComponent name="Your name" email='some@gmail.com' avatar='https://randomuser.me/api/portraits/men/85.jpg'></NavBarAvatarComponent>
+        <v-list v-if='accountStore.getUserAuthStatus'>
+          <NavBarAvatarComponent :name="accountStore.getFirstName" :email="accountStore.getEmail" avatar='https://randomuser.me/api/portraits/men/85.jpg'></NavBarAvatarComponent>
         </v-list>
 
         <v-divider></v-divider>
@@ -12,10 +12,12 @@
 
           <NavBarLink title='Shop' value='shop' icon='mdi-shopping' link='/shop'></NavBarLink>
 
-          <NavBarLink title='Cart' value='cart' icon='mdi-cart' link='/cart' :badge='isShowen'></NavBarLink>
+          
 
 
-          <div v-if='isAuth' >
+          <div v-if='accountStore.getUserAuthStatus' >
+            <NavBarLink title='Cart' value='cart' icon='mdi-cart' link='/cart' :badge='isShowen'></NavBarLink>
+
             <NavBarLink title='Account' value='account' icon='mdi-account' link='/account'></NavBarLink>
 
             <NavBarLink title='Log out' value='logout' icon='mdi-logout' link='/logout'></NavBarLink>
@@ -55,6 +57,7 @@ import NavBarAvatarComponent from './components/NavBarAvatarComponent.vue';
 import { useTheme } from "vuetify";
 
 import { useCartStore } from '../../stores/cart';
+import { useAccountStore } from '../../stores/account';
 
 export default {
 
@@ -64,12 +67,13 @@ export default {
   },
   setup() {
     const theme = useTheme();
-    const store = useCartStore()
-    return { theme, store }
+    const cartStore = useCartStore()
+    const accountStore = useAccountStore()
+    return { theme, cartStore, accountStore}
   },
   data() {
     return {
-      isAuth: true,
+      isAuth: false,
       darkMode: true,
     }
   },
@@ -81,8 +85,8 @@ export default {
   },
   computed:{
     isShowen(){
-      console.log(this.store.getListLenght)
-      if(this.store.getListLenght == 0){
+      console.log(this.cartStore.getListLenght)
+      if(this.cartStore.getListLenght == 0){
         return false
       }
       console.log(1)

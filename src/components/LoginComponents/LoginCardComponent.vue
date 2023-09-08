@@ -22,7 +22,7 @@
 
                 <v-col cols='12'>
                     <div class="btn-holder">
-                        <v-btn color="success" class="btn" variant="text" :disabled='isValid' @click='loginUser'>Login</v-btn>
+                        <v-btn color="success" class="btn" variant="text" :disabled='isValid' @click='logInUser'>Login</v-btn>
 
                         <router-link 
                         to="register"
@@ -41,7 +41,7 @@
 <script>
 import ContactInput from '../inputs/contactInput.vue';
 import { useAccountStore } from '../../stores/account';
-
+import { loginUser } from '../../services/auth/authUser';
 export default {
     setup(){
         const store = useAccountStore()
@@ -71,8 +71,8 @@ export default {
         }
     },
     methods:{
-        async loginUser(){
-            const res = await this.store.loginUser({
+        async logInUser(){
+            const res = await loginUser({
                 password : this.password,
                 email : this.email,
             })

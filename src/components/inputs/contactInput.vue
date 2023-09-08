@@ -17,11 +17,12 @@ export default {
     props:{
         disabled : Boolean,
         type : String,
-        label : String
+        label : String,
+        defaultValue : String
     },
     data() {
         return {
-            value : '',
+            value : this.defaultValue || '',
             valid: false,
             nameRules: [
                 value => {
@@ -65,7 +66,7 @@ export default {
                 value =>{
 
                     const r =  /[0-9\s]|\./
-                    if(!r.test(value.charAt(value.length - 1)) || value.length >= 12){
+                    if(!r.test(value.charAt(value.length - 1)) || value.length >= 13){
                         
                         this.value = this.value.slice(0, -1)
                     }

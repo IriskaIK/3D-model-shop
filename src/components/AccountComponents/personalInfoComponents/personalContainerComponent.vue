@@ -17,8 +17,8 @@
     
 </template>
 <script>
-import personalInfoComponent from './personalInfoComponent.vue';
-import deliveryAddressComponent from './deliveryAddressComponent.vue';
+import personalInfoComponent from './cards/personalInfoCard.vue';
+import deliveryAddressComponent from './cards/deliveryAddressCard.vue';
 export default {
     components:{
         personalInfoComponent,

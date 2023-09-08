@@ -1,90 +1,64 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-function createPostRequestOptions(body = {}) {
-    let headers = new Headers();
-    headers.append("Content-Type", "application/json");
-    headers.append("Accept", "application/json");
 
-    const requestOptions = {
-        method: "POST",
-        headers: headers,
-        withCredentials: true,
-        credentials: "include",
-        body: body,
-        redirect: "follow",
-        mode: "cors",
-    };
-    return requestOptions
-}
 
 export const useAccountStore = defineStore("account", {
     state: () => ({
-    /** @type {{ fisrt_name : string, last_name : string, phone : string, email : string, status: boolean }} */
-    profileData: {},
+    /** @type {{ fisrt_name : string, last_name : string, phone : string, email : string, isAuth: boolean }} */
+    profileData: {
+    },
+    /** @type {{ region : string, city : string, postOffice : string}} */
+    deliveryData:{
+
+    }
     }),
-    getters: {},
-    actions: {
-        async regUser(payload) {
-    
-            const body = JSON.stringify({
-                email: payload.email,
-                first_name: payload.first_name,
-                password: payload.password,
-            });
-
-            const requestOptions = createPostRequestOptions(body)
-
-            const data = await fetch(
-                "http://localhost:3000/api/auth/register",
-                requestOptions
-            )
-            .then(async (res) => {
-                const json = await res.json()
-                return {json, status : res.status}
-            })
-            .then((data)=>{
-                if(data.status === 201){
-                    console.log(data.json.user)
-                    this.profileData = data.json.user
-                }
-                return { status: data.status, msg: data.json.msg}
-            })
-
-            return data
-            
-
-            
-           
+    getters: {
+        getUserAuthStatus(state){
+            if(state.profileData.isAuth){
+                return true
+            }
+            return false
         },
-        async loginUser(payload){
-            const body = JSON.stringify({
-                email: payload.email,
-                password: payload.password,
-            });
+        getFirstName(state){
+            return state.profileData.fisrt_name
+        },
+        getEmail(state){
+            return state.profileData.email
+        },
+        getProfileData(state){
+            return {
+                first_name : state.profileData.fisrt_name,
+                last_name : state.profileData.last_name || '',
+                phone : state.profileData.phone || '',
+                email : state.profileData.email
+            }
+        },
+        getDeliveryData(state){
+            return {
+                region : state.deliveryData.region || '',
+                city : state.deliveryData.city || '',
+                postOffice : state.deliveryData.postOffice || ''
+            }
+        }
+    },
+    actions: {
+        setUserData(payload){
+            this.profileData = {
+                fisrt_name : payload.first_name || '',
+                last_name : payload.last_name || '',
+                phone : payload.phone || '',
+                email : payload.email || '',
+                isAuth : payload.isAuth
 
-            const requestOptions = createPostRequestOptions(body)
-
-
-            const data = await fetch(
-                "http://localhost:3000/api/auth/login",
-                requestOptions
-            )
-            .then(async (res) => {
-                const json = await res.json()
-                return {json, status : res.status}
-                
-            })
-            .then((data)=>{
-                if(data.status === 200){
-                    console.log(data.json.user)
-                    this.profileData = data.json.user
-                }
-                return { status: data.status, msg: data.json.msg}
-
-            })
-
-            return data
+            }
+        },
+        setDeliveryData(payload){
+            this.deliveryData = {
+                region : payload.region,
+                city : payload.city,
+                postOffice : payload.postOffice
+            }
         }
     },
 });

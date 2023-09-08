@@ -4,14 +4,13 @@
 
     <TopicComponent v-for="value in topics" :topicName="value.name" :topicContent="value.content"></TopicComponent>
 
-
-
     <v-footer >
-
         <div class="px-4 py-2 text-center w-100">
-        {{ new Date().getFullYear() }} — <strong>TestApp</strong>
+            {{ new Date().getFullYear() }} — <strong>TestApp</strong>
         </div>
     </v-footer>
+
+    
 </template>
 <script>
 import TopicComponent from '../components/HomeComponents/TopicComponent.vue';

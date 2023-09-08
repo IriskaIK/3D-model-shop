@@ -16,14 +16,23 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+####Add google map api token in ./env.local
+```javascript
+VITE_API_KEY = '{Your api key}'
+```
+
+####Server
+https://github.com/IriskaIK/3D-model-shop-server
+
+
+
+
+
+
+
 ### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```

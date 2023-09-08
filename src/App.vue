@@ -13,6 +13,8 @@
               
             </transition>
           </router-view>
+
+          
           
           <!-- <router-view>
           </router-view> -->
@@ -56,6 +58,7 @@ export default {
 .container-margin{
   margin-bottom: 100px;
 }
+
 
 
 </style>

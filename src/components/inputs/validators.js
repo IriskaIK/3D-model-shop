@@ -59,4 +59,6 @@ export function validatePhone(phone){
     if(!phoneRegex.test(phone)){
         return {valid : false, msg : 'Phone number is invalid'}
     }
+
+    return {valid : true}
 }

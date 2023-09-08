@@ -1,8 +1,8 @@
 <template lang="">
     <v-hover v-slot="{ isHovering, props }">
         <v-btn variant="outlined" ripple icon="mdi-heart" size="35" class="add-btn"
-        :class="{'add-btn-hover': isHovering, 'add-btn-hover' :  isInCart}" 
-        :disabled = 'isInCart'
+        :class="{'add-btn-hover': isHovering, 'add-btn-hover' :  isInWishList}" 
+        :disabled = 'isInWishList'
         v-bind="props"
         @click="this.addToWishlist()">
         
@@ -28,21 +28,15 @@
     </v-snackbar>
 </template>
 <script>
-import { useWishlistStore } from '../../../stores/wishlist';
-import { storeToRefs } from 'pinia'
 
 export default {
-    setup() {
-        const store = useWishlistStore()
-        const {getProductById } = storeToRefs(store)
-        return {store, getProductById}
-    }, 
+
     props:{
-        productId: String,
-        price: String,
-        name : String,
-        currency : String,
-        src: String
+        isInWishList  : Boolean
+
+    },
+    emits:{
+        wishlistBtn : null
     },
     data() {
         return {
@@ -52,16 +46,7 @@ export default {
     methods:{
         addToWishlist(){
             this.addToLikedSnackBar = true
-            this.store.addProduct({name: this.name, price: this.price, id: this.productId, currency :this.currency, src: this.src})
-        }
-    },
-    computed:{
-        isInCart(){
-            if(this.getProductById(this.productId)){
-                return true
-            }
-            return false
-             
+            this.$emit('wishlistBtn')
         }
     }
     

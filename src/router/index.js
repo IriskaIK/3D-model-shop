@@ -7,6 +7,7 @@ import Shop from '../views/Shop.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
+import { isAuthenticated } from '../services/auth/authUser'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,4 +23,18 @@ const router = createRouter({
   ]
 })
 
+const guardedRoutes = [
+  'cart',
+  'account',
+
+]
+
+router.beforeEach(async (to, from, next)=>{
+  const auth = await isAuthenticated()
+  if(guardedRoutes.includes(to.name) && !auth){
+    next({name : 'login'})
+  }else{
+    next()
+  }
+})
 export default router

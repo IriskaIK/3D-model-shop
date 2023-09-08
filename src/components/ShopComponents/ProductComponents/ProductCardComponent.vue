@@ -30,9 +30,19 @@
                 <v-chip class="chip-item" v-for="item in tags" >{{item}}</v-chip>
             </v-card-text>
             <v-card-actions>
-                <addToCartBtn :src="this.src" :productId="this.productId" :name="this.title" :price="this.price" :currency="this.currency"></addToCartBtn>
-                <addToWishlistBtn :src="this.src" :name="this.title" :price="this.price" :currency="this.currency" :productId="this.productId"></addToWishlistBtn>
+
+                <addToCartBtn 
+                :is-in-cart="isInCart" 
+                @cart-btn="addToCart()">
+                </addToCartBtn>
+
+                <addToWishlistBtn 
+                :is-in-wish-list="isInWishList" 
+                @wishlist-btn="addToWishList()">
+                </addToWishlistBtn>
+
                 <v-spacer></v-spacer>
+
                 <seeMoreBtn  :productId="this.productId"></seeMoreBtn>
             </v-card-actions>
         
@@ -41,11 +51,22 @@
     
 </template>
 <script>
-import addToCartBtn from './addToCartBtn.vue';
-import addToWishlistBtn from './addToWishlistBtn.vue';
-import seeMoreBtn from './seeMoreBtn.vue';
-export default {
+import addToCartBtn from './btns/addToCartBtn.vue';
+import addToWishlistBtn from './btns/addToWishlistBtn.vue';
+import seeMoreBtn from './btns/seeMoreBtn.vue';
 
+import { useCartStore } from '../../../stores/cart'
+import { useWishlistStore } from '../../../stores/wishlist';
+import { storeToRefs } from 'pinia'
+export default {
+    setup() {
+        const cartStore = useCartStore()
+        const wishlistStore = useWishlistStore()
+
+        const getWithListProductById = storeToRefs(wishlistStore).getProductById
+        const getCartProductById = storeToRefs(cartStore).getProductById
+        return {cartStore, wishlistStore, getCartProductById, getWithListProductById}
+    }, 
     
     components:{
         addToCartBtn,
@@ -65,6 +86,31 @@ export default {
     data() {
         return {
  
+        }
+    },
+    methods:{
+        addToCart(){
+            this.cartStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
+
+        },
+        addToWishList(){
+            this.wishlistStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
+        }
+    },
+    computed:{
+        isInCart(){
+            const product = this.getCartProductById(this.productId)
+            if(product){
+                return true
+            }
+            return false
+        },
+        isInWishList(){
+            const product = this.getWithListProductById(this.productId)
+            if(product){
+                return true
+            }
+            return false
         }
     }
 

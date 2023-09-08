@@ -30,22 +30,15 @@
     </v-snackbar>
 </template>
 <script>
-import { useCartStore } from '../../../stores/cart'
-import { storeToRefs } from 'pinia'
+
 
 export default {
-    setup() {
-        const store = useCartStore()
-        const {getProductById } = storeToRefs(store)
-        return {store, getProductById}
-    }, 
 
     props:{
-        productId: String,
-        price: String,
-        name : String,
-        currency : String,
-        src: String
+        isInCart : Boolean
+    },
+    emits:{
+        cartBtn : null
     },
     data() {
         return {
@@ -54,13 +47,8 @@ export default {
     },
     methods:{
         addToCart(){
+            this.$emit('cartBtn')
             this.addToCartSnackBar = true
-            this.store.addProduct({name: this.name, price: this.price, id: this.productId, currency :this.currency, src: this.src})
-        }
-    },
-    computed:{
-        isInCart(){
-            return this.getProductById(this.productId)
         }
     }
 }
