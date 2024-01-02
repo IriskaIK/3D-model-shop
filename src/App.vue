@@ -29,8 +29,7 @@
   
 </template>
 <script>
-import NavBarComponent from './components/NavBarComponents/NavBarComponent.vue'
-
+import NavBarComponent from "@/components/NavBarComponents/NavBarComponent.vue";
 export default {
   name:'App',
   components:{

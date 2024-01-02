@@ -1,11 +1,18 @@
 <template>
+  <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
+         v-if="!inStock"
+  >
+    Out of stock
+  </v-btn>
     <v-btn variant="outlined" ripple prepend-icon="mdi-cart"
             @click="this.addToCart()"
-            v-if="!isInCart"
+            v-else-if="!isInCart"
+
             > 
                 
                 To cart
     </v-btn>
+
     <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
             v-else
             > 
@@ -35,7 +42,8 @@
 export default {
 
     props:{
-        isInCart : Boolean
+        isInCart : Boolean,
+        inStock : Boolean
     },
     emits:{
         cartBtn : null

@@ -3,7 +3,7 @@
        
         <td width='50px' >
             <v-img 
-            :src='this.src'
+            :src="getImagePath()"
             height="50px"
             width='50px'
             cover
@@ -68,6 +68,9 @@ export default {
         },
         changeSelected(){
             this.store.switchSelection({id:this.productID})
+        },
+        getImagePath(){
+          return "http://localhost:3000/uploads/" + this.src
         }
     },
     watch:{

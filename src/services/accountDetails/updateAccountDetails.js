@@ -1,5 +1,5 @@
 import { createRequestOptions } from "../../utils/requestOptionsGenerator";
-import { useAccountStore } from "../../stores/account"; 
+import { useAccountStore } from "../../stores/account";
 
 
 export async function updatePersonalInfo(payload){

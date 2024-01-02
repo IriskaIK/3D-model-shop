@@ -7,13 +7,15 @@ import Shop from '../views/Shop.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
-import { isAuthenticated } from '../services/auth/authUser'
+import { isAuthenticated } from '@/services/auth/authUser'
+import { getShopProducts} from "@/services/shop/getShopProducts";
+import {getAvailableTags, getAvailableUniverses} from "@/services/shop/getSearchOptions";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {path: '/', component: Home, name:'home'},
-    {path: '/shop', component: Shop, name:'shop'},
+    {path: '/shop', component: Shop, name:'shop', beforeEnter: getShopData},
     {path: '/cart', component: Cart, name:'cart'},
     {path: '/account', component: Account, name:'account'},
     {path: '/login', component: Login, name:'login'},
@@ -37,4 +39,14 @@ router.beforeEach(async (to, from, next)=>{
     next()
   }
 })
+
+
+async function getShopData(to, from, next){
+  const products = await getShopProducts()
+  await getAvailableUniverses()
+  await getAvailableTags()
+  next()
+}
+
+
 export default router

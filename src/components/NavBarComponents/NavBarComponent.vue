@@ -1,4 +1,4 @@
-<template lang="">
+<template>
       <v-navigation-drawer location='right' expand-on-hover rail :permanent='true' rounded='s-xl'>
         <!-- temporary='true' -->
         <v-list v-if='accountStore.getUserAuthStatus'>
@@ -56,8 +56,8 @@ import NavBarAvatarComponent from './components/NavBarAvatarComponent.vue';
 
 import { useTheme } from "vuetify";
 
-import { useCartStore } from '../../stores/cart';
-import { useAccountStore } from '../../stores/account';
+import { useCartStore } from '@/stores/cart';
+import { useAccountStore } from '@/stores/account';
 
 export default {
 

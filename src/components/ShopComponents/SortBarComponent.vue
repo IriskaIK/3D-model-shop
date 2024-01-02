@@ -1,154 +1,75 @@
-<template lang="">
+<template>
     <v-container grid-list-xs>
-        <v-row>
-            <v-col :cols='12' md='4'>
-                <v-autocomplete
-                chips
-                label="Game or Universe"
-                :items="['Forbiden Stars', 'Shrek', 'Shrek 2', 'Oleg', 'What?', 'Marvel']"
-                multiple
-                clearable
-                v-model='this.sortBarData.gameOrUniverse'
-                ></v-autocomplete>
-                <v-autocomplete
-                chips
-                label="Tags"
-                :items="['Dont check it', 'It isnt ready', 'I dont know', 'What i can', 'Put here', 'Some option?']"
-                multiple
-                v-model="this.sortBarData.secondOption"
-                
-                clearable
-                ></v-autocomplete>
-            </v-col>
-            <v-col :cols='12' md='4'>
-                <v-autocomplete
-                chips
-                label="Something"
-                :items="['Forbiden Stars', 'Shrek', 'Shrek 2', 'Oleg', 'What?', 'Marvel']"
-                multiple
-                clearable
-                v-model='this.sortBarData.thirdOption'
-                ></v-autocomplete>
-                <v-autocomplete
-                chips
-                label="Another input"
-                :items="['Dont check it', 'It isnt ready', 'I dont know', 'What i can', 'Put here', 'Some option?']"
-                multiple
-                v-model="this.sortBarData.fourthOption"
-                
-                clearable
-                ></v-autocomplete>
-            </v-col>
-            <v-col :cols='12' md='4'>
-                <v-checkbox v-model='this.sortBarData.displayRanOutOfStock' label="Display product, that ran out of stock"></v-checkbox>
-                <v-checkbox v-model='this.sortBarData.additionalCheckbox' label="Additional checkbox"></v-checkbox>
-            </v-col>
-            <v-col :cols='12' md='3'>
-                
-            </v-col>
+          <v-row>
+              <v-col :cols='12' md='4'>
+                <universe-options-component></universe-options-component>
+                <tag-options-component></tag-options-component>
 
-            
-            
-            
-        </v-row>
-        <v-row>
-            
-            <v-col :cols='12' md='6'>
-                <v-range-slider
-                v-model="this.sortBarData.range"
-                :max="30000"
-                :min="100"
-                :step="100"
-                hide-details
-                class="align-center"
-                
-                >
-                    <template v-slot:prepend>
-                        <p class='price-p'>Price:</p>
-                        <v-text-field
-                        :model-value='this.sortBarData.range[0]'
-                        hide-details
-                        single-line
-                        type="number"
-                        variant="outlined"
-                        style="width: 100px"
-                        density="compact"
-                        @change="setMin($event)"
-                        ></v-text-field>
+              </v-col>
 
-                    </template>
-                    <template v-slot:append>
-                    <v-text-field
-                    :model-value='this.sortBarData.range[1]'
-                    hide-details
-                    single-line
-                    type="number"
-                    variant="outlined"
-                    style="width: 100px"
-                    density="compact"
-                    @change="setMax($event)"
-                    ></v-text-field>
-                </template>
-            </v-range-slider>
-            </v-col>
-            <v-col :cols='12' md='2'>
-                <v-autocomplete
-                chips
-                label="Sort by"
-                :items="['High price', 'Low price', 'Name', 'Date']"
-                v-model="this.sortBarData.sortBy"
-                
-                clearable
-                ></v-autocomplete>
-            </v-col>
-            <v-col :cols='12' md='3'>
-                <v-btn
-                class="me-4"
-                ripple
-                color="success"
-                >
-                Search
-                </v-btn>
+              <v-col :cols='12' md='4'>
+                <toggle-options-component></toggle-options-component>
+              </v-col>
 
-                <v-btn ripple @click='this.clearAll()'>
-                clear
-                </v-btn>
-            </v-col>
-            
-        </v-row>
-        
-        
+
+
+
+
+          </v-row>
+          <v-row>
+
+              <v-col :cols='12' md='6'>
+                <price-options-component></price-options-component>
+              </v-col>
+
+
+
+
+
+              <v-col :cols='12' md='2'>
+                <sort-options-component></sort-options-component>
+              </v-col>
+
+
+
+
+              <v-col :cols='12' md='3'>
+                <search-btn-component></search-btn-component>
+
+                <clear-btn-component></clear-btn-component>
+              </v-col>
+
+          </v-row>
+
+
     </v-container>
+
 </template>
+
+
+
+
 <script>
+
+
+import {useProductsStore} from "@/stores/products";
+import UniverseOptionsComponent
+  from "@/components/ShopComponents/SearchBarOptionsComponents/UniverseOptionsComponent.vue";
+import tagOptionsComponent from "@/components/ShopComponents/SearchBarOptionsComponents/TagOptionsComponent.vue";
+import priceOptionsComponent from "@/components/ShopComponents/SearchBarOptionsComponents/priceOptionsComponent.vue";
+import toggleOptionsComponent from "@/components/ShopComponents/SearchBarOptionsComponents/toggleOptionsComponent.vue";
+import sortOptionsComponent from "@/components/ShopComponents/SearchBarOptionsComponents/sortOptionsComponent.vue";
+import clearBtnComponent from "@/components/ShopComponents/SearchBarOptionsComponents/clearBtnComponent.vue";
+import searchBtnComponent from "@/components/ShopComponents/SearchBarOptionsComponents/searchBtnComponent.vue";
 export default {
-    data() {
+  components: {UniverseOptionsComponent, tagOptionsComponent, priceOptionsComponent, toggleOptionsComponent, sortOptionsComponent, clearBtnComponent, searchBtnComponent},
+
+  data() {
         return {
-            sortBarData:{
-                gameOrUniverse:[],
-                secondOption: [],
-                thirdOption: [],
-                fourthOption: [],
-                sortBy:'High price',
 
-                displayRanOutOfStock:false,
-                additionalCheckbox:false,
-
-                range: [100, 30000],
-            },
-
-           
         }
     },
     methods:{
-        setMin(event){
-            this.sortBarData.range[0]=event.target.value
-            
-        },
-        setMax(event){
-            this.sortBarData.range[1]=event.target.value
-            
-        },
         clearAll(){
             this.sortBarData = {
                 gameOrUniverse:[],

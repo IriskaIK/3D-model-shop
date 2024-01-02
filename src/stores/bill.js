@@ -19,10 +19,8 @@ export const useBillStore = defineStore("bill", {
   }),
   getters: {
     getBillStatus(state){
-      if(!state.userContacts.status || !state.deliveryInfo.status || !state.payment.status || !state.recipientContacts.status){
-        return false
-      }
-      return true
+      return !(!state.userContacts.status || !state.deliveryInfo.status || !state.payment.status || !state.recipientContacts.status);
+
     }
 
   },

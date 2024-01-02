@@ -1,6 +1,7 @@
-<template lang="">
+<template>
 
-    <contactDetailComponent :store='this.store'></contactDetailComponent>
+    <contactDetailComponent :store='this.store'>
+    </contactDetailComponent>
 
     <v-divider :thickness="3" class="border-opacity-25 divider"></v-divider>
 
@@ -27,7 +28,7 @@ import paymentComponent from './billComponents/paymentComponent.vue';
 import recipientContactsComponent from './billComponents/recipientContactsComponent.vue';
 import orderBtnComponent from './billComponents/orderBtnComponent.vue';
 
-import { useBillStore } from '../../stores/bill';
+import { useBillStore } from '@/stores/bill';
 
 export default {
     setup(){
