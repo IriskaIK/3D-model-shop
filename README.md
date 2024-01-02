@@ -1,6 +1,5 @@
 # shopApp
-
-This template should help get you started developing with Vue 3 in Vite.
+https://iriskaik.github.io/3D-model-shop-client/dist/
 
 ## Recommended IDE Setup
 
