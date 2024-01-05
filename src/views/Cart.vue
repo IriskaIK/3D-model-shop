@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <v-container>
         <v-row>
             <v-col :md='7' :cols='12'>

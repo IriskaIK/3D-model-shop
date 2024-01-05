@@ -6,9 +6,11 @@ import Account from '../views/Account.vue'
 import Shop from '../views/Shop.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Product from '../views/Product.vue'
 
 import { isAuthenticated } from '@/services/auth/authUser'
 import { getShopProducts} from "@/services/shop/getShopProducts";
+import {getProductData} from "@/services/shop/getProductData"
 import {getAvailableTags, getAvailableUniverses} from "@/services/shop/getSearchOptions";
 
 const router = createRouter({
@@ -20,7 +22,7 @@ const router = createRouter({
     {path: '/account', component: Account, name:'account'},
     {path: '/login', component: Login, name:'login'},
     {path: '/register', component:  Register, name : 'register'},
-    {path: '/product/:id', component: '', name:'some4'}
+    {path: '/product/:id', component: Product, name:'product', beforeEnter: getProductInfo}
 
   ]
 })
@@ -47,6 +49,10 @@ async function getShopData(to, from, next){
   await getAvailableTags()
   next()
 }
-
+async function getProductInfo(to, from, next){
+  const productData = await getProductData(to.params.id)
+  console.log(productData)
+  next()
+}
 
 export default router

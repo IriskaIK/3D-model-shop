@@ -1,13 +1,13 @@
 import {createRequestOptions} from "@/utils/requestOptionsGenerator";
 import {useProductsStore} from "@/stores/products";
 
-export async function getShopProducts(){
+export async function getProductData(productID){
     const store = useProductsStore()
-    const body = JSON.stringify(store.getOptionsData)
-    const requestOptions = createRequestOptions(body, 'POST')
+    const body = JSON.stringify({})
+    const requestOptions = createRequestOptions(body,'POST')
 
     const data = await fetch(
-        "http://localhost:3000/api/products",
+        "http://localhost:3000/api/products/product/"+productID,
         requestOptions
     )
         .then(async (res) => {
@@ -20,9 +20,9 @@ export async function getShopProducts(){
         .then((data)=>{
 
             if(data.status === 200){
-                store.setShopData(data.json)
+                store.setCurrentProduct(data.json)
 
-                return true
+                return {status : 'ok', data:data.json}
             }else if(data.status === 401){
                 // catch server issues
                 return false

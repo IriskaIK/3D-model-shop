@@ -1,6 +1,4 @@
-import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import {th} from "vuetify/locale";
 
 
 
@@ -23,6 +21,8 @@ export const useProductsStore = defineStore("shop", {
 
         /** @type {{ title: string, pId: string}[]} */
         availableTags : [],
+
+        currentProduct : []
 
     }),
     getters: {
@@ -69,12 +69,19 @@ export const useProductsStore = defineStore("shop", {
         },
         getOptionsData(state){
             return state.searchOptions
-        }
+        },
+
+        getCurrentProduct(state){
+            return state.currentProduct
+        },
 
     },
     actions: {
         setShopData(payload){
             this.products = payload
+        },
+        setCurrentProduct(payload){
+            this.currentProduct = payload
         },
         clearOptionsData(){
           this.searchOptions = {}

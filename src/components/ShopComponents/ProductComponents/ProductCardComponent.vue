@@ -44,7 +44,7 @@
 
                 <v-spacer></v-spacer>
 
-                <seeMoreBtn  :productId="this.productId"></seeMoreBtn>
+                <seeMoreBtn  :productId="this.productId" :isInProductPage = "isInProductPage"></seeMoreBtn>
             </v-card-actions>
         
         </v-card>
@@ -83,7 +83,8 @@ export default {
         tags : Array,
         productId: String,
         currency : String,
-        inStock : Boolean
+        inStock : Boolean,
+        isInProductPage : Boolean
     },
     data() {
         return {
