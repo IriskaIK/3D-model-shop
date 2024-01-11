@@ -11,6 +11,7 @@ import Product from '../views/Product.vue'
 import { isAuthenticated } from '@/services/auth/authUser'
 import { getShopProducts} from "@/services/shop/getShopProducts";
 import {getProductData} from "@/services/shop/getProductData"
+import {getCartData} from "@/services/cart/getCartData";
 import {getAvailableTags, getAvailableUniverses} from "@/services/shop/getSearchOptions";
 
 const router = createRouter({
@@ -18,7 +19,7 @@ const router = createRouter({
   routes: [
     {path: '/', component: Home, name:'home'},
     {path: '/shop', component: Shop, name:'shop', beforeEnter: getShopData},
-    {path: '/cart', component: Cart, name:'cart'},
+    {path: '/cart', component: Cart, name:'cart', beforeEnter: getCartItems},
     {path: '/account', component: Account, name:'account'},
     {path: '/login', component: Login, name:'login'},
     {path: '/register', component:  Register, name : 'register'},
@@ -52,6 +53,12 @@ async function getShopData(to, from, next){
 async function getProductInfo(to, from, next){
   const productData = await getProductData(to.params.id)
   console.log(productData)
+  next()
+}
+
+async function getCartItems(to, from, next){
+  const cartItems = await getCartData()
+  console.log(cartItems)
   next()
 }
 

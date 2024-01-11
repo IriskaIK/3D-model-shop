@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     
     <td class='quantity-holder'>
         <v-btn density='compact' variant='text' @click='this.store.decreaseQuantity({id:productID})'>-</v-btn>

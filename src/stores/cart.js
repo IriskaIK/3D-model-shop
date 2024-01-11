@@ -1,5 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import {updateQunatityOfCartItem} from "@/services/cart/updateQunatityOfCartItem";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -56,6 +57,13 @@ export const useCartStore = defineStore("cart", {
     setProducts(products){
       this.products = products
     },
+    setProductQuantity(productId, quantity){
+      this.products.forEach(element=>{
+        if(element.id === productId){
+          element.quantity = quantity
+        }
+      })
+    },
     removeProduct(product) {
       let ind = this.products.findIndex((item) => {
         if (item.id == product.id) {
@@ -75,7 +83,7 @@ export const useCartStore = defineStore("cart", {
       });
       this.products[ind].isSelected = !this.products[ind].isSelected
     },
-    increaseQuantity(product){
+    async increaseQuantity(product){
       let ind = this.products.findIndex((item) => {
         if (item.id == product.id) {
           return true;
@@ -83,8 +91,10 @@ export const useCartStore = defineStore("cart", {
         return false;
       });
       this.products[ind].quantity += 1
+
+      await updateQunatityOfCartItem(product.id, this.products[ind].quantity)
     },
-    decreaseQuantity(product){
+    async decreaseQuantity(product){
       let ind = this.products.findIndex((item) => {
         if (item.id == product.id) {
           return true;
@@ -94,6 +104,7 @@ export const useCartStore = defineStore("cart", {
       if(this.products[ind].quantity > 1){
         this.products[ind].quantity -= 1
       }
+      await updateQunatityOfCartItem(product.id, this.products[ind].quantity)
       
     }
   },

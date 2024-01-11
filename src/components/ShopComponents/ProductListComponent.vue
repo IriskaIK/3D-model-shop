@@ -10,7 +10,7 @@
                         :title="product.title"
                         :subtitle="product.subtitle"
                         :price="product.price"
-                        :src='product.images.path'
+                        :src='product.images[0].path'
                         :inStock='product.isInStock'></ProductCardComponent>
                 </v-col>
             </v-row>

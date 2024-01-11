@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <tr>
        
         <td width='50px' >
@@ -38,6 +38,7 @@
 import { useCartStore } from '../../../stores/cart';
 import { storeToRefs } from 'pinia'
 import quantityInputComponent from './quantityInputComponent.vue'
+import {removeCartItem} from "@/services/cart/removeCartItem";
 export default {
 
     setup() {
@@ -63,8 +64,9 @@ export default {
         quantity : Number,
     },
     methods:{
-        deleteItem(){
+        async deleteItem(){
             this.store.removeProduct({id:this.productID})
+            await removeCartItem(this.productID)
         },
         changeSelected(){
             this.store.switchSelection({id:this.productID})

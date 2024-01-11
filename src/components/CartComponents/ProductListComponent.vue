@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <v-card>
         
         <v-table >
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
 
-            <listItemComponent v-for='(item, index) in store.getProducts' :quantity='item.quantity' :id="item.id" :productID='item.id' :src='item.src' :name='item.name' :price='item.price' :currency='item.currency'></listItemComponent>
+            <listItemComponent v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id' :src='item.src' :name='item.name' :price='item.price' :currency='item.currency'></listItemComponent>
             <totalPriceItemComponent :totalPrice='store.getTotalPrice'></totalPriceItemComponent>
             
             

@@ -55,7 +55,7 @@
 import addToCartBtn from './btns/addToCartBtn.vue';
 import addToWishlistBtn from './btns/addToWishlistBtn.vue';
 import seeMoreBtn from './btns/seeMoreBtn.vue';
-
+import {setCartData} from "@/services/cart/setCartData";
 import { useCartStore } from '../../../stores/cart'
 import { useWishlistStore } from '../../../stores/wishlist';
 import { storeToRefs } from 'pinia'
@@ -92,9 +92,9 @@ export default {
         }
     },
     methods:{
-        addToCart(){
+        async addToCart(){
             this.cartStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
-
+            await setCartData(this.productId)
         },
         addToWishList(){
             this.wishlistStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
