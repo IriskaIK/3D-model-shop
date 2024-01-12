@@ -56,6 +56,7 @@ import addToCartBtn from './btns/addToCartBtn.vue';
 import addToWishlistBtn from './btns/addToWishlistBtn.vue';
 import seeMoreBtn from './btns/seeMoreBtn.vue';
 import {setCartData} from "@/services/cart/setCartData";
+import {addWishListItem} from "@/services/wishlist/addWishlistItem";
 import { useCartStore } from '../../../stores/cart'
 import { useWishlistStore } from '../../../stores/wishlist';
 import { storeToRefs } from 'pinia'
@@ -96,8 +97,9 @@ export default {
             this.cartStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
             await setCartData(this.productId)
         },
-        addToWishList(){
+        async addToWishList(){
             this.wishlistStore.addProduct({name: this.title, price: this.price, id: this.productId, currency :this.currency, src: this.src})
+            await addWishListItem(this.productId)
         },
         getImagePath(){
           return "http://localhost:3000/uploads/" + this.src

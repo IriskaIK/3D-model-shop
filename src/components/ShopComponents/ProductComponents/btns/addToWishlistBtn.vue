@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <v-hover v-slot="{ isHovering, props }">
         <v-btn variant="outlined" ripple icon="mdi-heart" size="35" class="add-btn"
         :class="{'add-btn-hover': isHovering, 'add-btn-hover' :  isInWishList}" 

@@ -13,6 +13,7 @@ import { getShopProducts} from "@/services/shop/getShopProducts";
 import {getProductData} from "@/services/shop/getProductData"
 import {getCartData} from "@/services/cart/getCartData";
 import {getAvailableTags, getAvailableUniverses} from "@/services/shop/getSearchOptions";
+import {getWishlistItems} from "@/services/wishlist/getWishlistItems";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +21,7 @@ const router = createRouter({
     {path: '/', component: Home, name:'home'},
     {path: '/shop', component: Shop, name:'shop', beforeEnter: getShopData},
     {path: '/cart', component: Cart, name:'cart', beforeEnter: getCartItems},
-    {path: '/account', component: Account, name:'account'},
+    {path: '/account', component: Account, name:'account', beforeEnter : getAccountData},
     {path: '/login', component: Login, name:'login'},
     {path: '/register', component:  Register, name : 'register'},
     {path: '/product/:id', component: Product, name:'product', beforeEnter: getProductInfo}
@@ -52,13 +53,16 @@ async function getShopData(to, from, next){
 }
 async function getProductInfo(to, from, next){
   const productData = await getProductData(to.params.id)
-  console.log(productData)
   next()
 }
 
 async function getCartItems(to, from, next){
   const cartItems = await getCartData()
-  console.log(cartItems)
+  next()
+}
+
+async function getAccountData(to, from, next){
+  await getWishlistItems()
   next()
 }
 
