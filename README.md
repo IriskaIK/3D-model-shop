@@ -1,4 +1,4 @@
-# shopApp
+# shopApp(deprecated)
 https://iriskaik.github.io/3D-model-shop-client/dist/
 
 ## Recommended IDE Setup
@@ -15,12 +15,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-####Add google map api token in ./env.local
+#### Add google map api token in ./env.local
 ```javascript
 VITE_API_KEY = '{Your api key}'
 ```
 
-####Server
+#### Server
 https://github.com/IriskaIK/3D-model-shop-server
 
 
