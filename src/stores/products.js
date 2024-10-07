@@ -5,9 +5,9 @@ import { defineStore } from "pinia";
 export const useProductsStore = defineStore("shop", {
     state: () => ({
 
-        /** @type {{ title: string, subtitle : string, content: string, universe: string, price: string, id: string, currency: string, src: string, inStock: boolean}[]} */
+        /** @type {{ title: string, subtitle : string, content: string, category: string, price: string, id: string, currency: string, src: string, inStock: boolean}[]} */
         products: [],
-        /** @type {{ price, universe, tags, inStock: boolean, orderBy : string}} */
+        /** @type {{ price, category, tags, inStock: boolean, orderBy : string}} */
         searchOptions:{
             price : {
                 min : 0,
@@ -17,7 +17,7 @@ export const useProductsStore = defineStore("shop", {
         },
 
         /** @type {{ title: string, pId: string}[]} */
-        availableUniverses: [],
+        availableCategories: [],
 
         /** @type {{ title: string, pId: string}[]} */
         availableTags : [],
@@ -32,8 +32,8 @@ export const useProductsStore = defineStore("shop", {
                 products : state.products.products
             }
         },
-        getSelectedUniverses(state){
-            return state.searchOptions.universe
+        getSelectedCategories(state){
+            return state.searchOptions.category
         },
         getSelectedTags(state){
             return state.searchOptions.tags
@@ -54,8 +54,8 @@ export const useProductsStore = defineStore("shop", {
           }
           return false
         },
-        getAvailableUniverses(state){
-            return state.availableUniverses
+        getAvailableCategories(state){
+            return state.availableCategories
 
         },
         getAvailableTags(state){
@@ -87,13 +87,13 @@ export const useProductsStore = defineStore("shop", {
           this.searchOptions = {}
         },
 
-        setUniverse(payload){
+        setCategory(payload){
             console.log(typeof payload)
             if(Object.keys(payload).length === 0){
-                delete this.searchOptions.universe
+                delete this.searchOptions.category
                 return
             }
-          this.searchOptions.universe = payload
+          this.searchOptions.category = payload
         },
         setTags(payload){
 
@@ -116,9 +116,9 @@ export const useProductsStore = defineStore("shop", {
             this.searchOptions.orderBy = payload
         },
 
-        setAvailableUniverses(payload){
+        setAvailableCategories(payload){
             console.log(payload)
-            this.availableUniverses = payload
+            this.availableCategories = payload
         },
         setAvailableTags(payload){
             console.log(payload)

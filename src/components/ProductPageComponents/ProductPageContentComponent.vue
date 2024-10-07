@@ -83,7 +83,7 @@ export default {
 
     <v-card-subtitle>
       <div class="subtitle">
-        {{ this.productData.universe.title }}/
+        {{ this.productData.category.title }}/
         <div class="subtitle-content">{{ this.productData.subtitle }}</div>
       </div>
 

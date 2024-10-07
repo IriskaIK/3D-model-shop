@@ -10,7 +10,7 @@ export default {
   },
   data(){
     return{
-      chosenOptions : this.productsStore.getSelectedUniverses,
+      chosenOptions : this.productsStore.getSelectedCategories,
     }
 
 
@@ -18,7 +18,7 @@ export default {
 
   watch:{
     'chosenOptions'(){
-      this.productsStore.setUniverse(this.chosenOptions)
+      this.productsStore.setCategory(this.chosenOptions)
     }
   }
 }
@@ -31,7 +31,7 @@ export default {
   <v-autocomplete
       chips
       label="Game or Universe"
-      :items="productsStore.getAvailableUniverses"
+      :items="productsStore.getAvailableCategories"
       item-text="title"
       item-value = "publicId"
       multiple

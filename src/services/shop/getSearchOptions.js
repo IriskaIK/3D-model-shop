@@ -36,12 +36,12 @@ export async function getAvailableTags(){
     return data
 }
 
-export async function getAvailableUniverses(){
+export async function getAvailableCategories(){
 
     const requestOptions = createRequestOptions({}, 'GET')
 
     const data = await fetch(
-        "http://localhost:3000/api/products/universes",
+        "http://localhost:3000/api/products/categories",
         requestOptions
     )
         .then(async (res) => {
@@ -54,7 +54,7 @@ export async function getAvailableUniverses(){
         .then((data)=>{
             const store = useProductsStore()
             if(data.status === 200){
-                store.setAvailableUniverses(data.json)
+                store.setAvailableCategories(data.json)
 
                 return true
             }else if(data.status === 401){

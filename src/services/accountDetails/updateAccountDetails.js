@@ -6,13 +6,13 @@ export async function updatePersonalInfo(payload){
 
     const body = JSON.stringify({
         email: payload.email,
-        first_name: payload.first_name,
-        last_name : payload.last_name,
-        phone: payload.phone,
+        firstName: payload.first_name,
+        lastName : payload.last_name,
+        phoneNumber: payload.phone,
     });
 
 
-    const requestOptions = createRequestOptions(body, 'POST')
+    const requestOptions = createRequestOptions(body, 'PUT')
 
     const data = await fetch(
         "http://localhost:3000/api/account/",
@@ -44,7 +44,7 @@ export async function updateDeliveryInfo(payload){
     });
 
 
-    const requestOptions = createRequestOptions(body, 'POST')
+    const requestOptions = createRequestOptions(body, 'PUT')
 
     const data = await fetch(
         "http://localhost:3000/api/account/delivery",

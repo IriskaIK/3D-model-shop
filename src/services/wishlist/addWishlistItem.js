@@ -2,10 +2,10 @@ import {createRequestOptions} from "@/utils/requestOptionsGenerator";
 
 export async function addWishListItem(productPublicId){
     const body = JSON.stringify({product_pid : productPublicId})
-    const requestOptions = createRequestOptions(body, 'POST')
+    const requestOptions = createRequestOptions(body, 'GET')
 
     const data = await fetch(
-        "http://localhost:3000/api/account/wishlist",
+        "http://localhost:3000/api/account/wishlist/"+productPublicId,
         requestOptions
     )
         .then(async (res) => {

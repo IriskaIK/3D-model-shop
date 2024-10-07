@@ -4,7 +4,7 @@ import {useProductsStore} from "@/stores/products";
 export async function getProductData(productID){
     const store = useProductsStore()
     const body = JSON.stringify({})
-    const requestOptions = createRequestOptions(body,'POST')
+    const requestOptions = createRequestOptions(body,'GET')
 
     const data = await fetch(
         "http://localhost:3000/api/products/product/"+productID,

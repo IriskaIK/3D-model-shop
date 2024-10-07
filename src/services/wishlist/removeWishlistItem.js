@@ -5,7 +5,7 @@ export async function removeWishlistItem(productPublicId){
     const requestOptions = createRequestOptions(body, 'DELETE')
 
     const data = await fetch(
-        "http://localhost:3000/api/account/wishlist",
+        "http://localhost:3000/api/account/wishlist/"+productPublicId,
         requestOptions
     )
         .then(async (res) => {

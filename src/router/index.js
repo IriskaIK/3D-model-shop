@@ -12,7 +12,7 @@ import { isAuthenticated } from '@/services/auth/authUser'
 import { getShopProducts} from "@/services/shop/getShopProducts";
 import {getProductData} from "@/services/shop/getProductData"
 import {getCartData} from "@/services/cart/getCartData";
-import {getAvailableTags, getAvailableUniverses} from "@/services/shop/getSearchOptions";
+import {getAvailableTags, getAvailableCategories} from "@/services/shop/getSearchOptions";
 import {getWishlistItems} from "@/services/wishlist/getWishlistItems";
 
 const router = createRouter({
@@ -47,7 +47,7 @@ router.beforeEach(async (to, from, next)=>{
 
 async function getShopData(to, from, next){
   const products = await getShopProducts()
-  await getAvailableUniverses()
+  await getAvailableCategories()
   await getAvailableTags()
   next()
 }

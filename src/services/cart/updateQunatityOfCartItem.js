@@ -1,7 +1,7 @@
 import {createRequestOptions} from "@/utils/requestOptionsGenerator";
 
 export async function updateQunatityOfCartItem(productPublicId, quantity){
-    const body = JSON.stringify({product_pid : productPublicId, quantity : quantity})
+    const body = JSON.stringify({id : productPublicId, quantity : quantity})
     const requestOptions = createRequestOptions(body, 'PUT')
 
     const data = await fetch(

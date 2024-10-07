@@ -72,7 +72,7 @@ export default {
     methods:{
         clearAll(){
             this.sortBarData = {
-                gameOrUniverse:[],
+                gameOrCategory:[],
                 secondOption: [],
                 thirdOption: [],
                 fourthOption: [],
