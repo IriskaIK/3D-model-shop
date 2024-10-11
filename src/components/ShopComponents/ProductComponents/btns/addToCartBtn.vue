@@ -1,66 +1,68 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'addToCartBtn',
+  props:{
+    isInCart : Boolean,
+    inStock : Boolean
+  },
+  emits:{
+    cartBtn : null
+  },
+  data() {
+    return {
+      addToCartSnackBar : false
+    }
+  },
+  methods:{
+    addToCart(){
+      this.$emit('cartBtn')
+      this.addToCartSnackBar = true
+    }
+  }
+})
+</script>
+
 <template>
   <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
          v-if="!inStock"
   >
     Out of stock
   </v-btn>
-    <v-btn variant="outlined" ripple prepend-icon="mdi-cart"
-            @click="this.addToCart()"
-            v-else-if="!isInCart"
+  <v-btn variant="outlined" ripple prepend-icon="mdi-cart"
+         @click="this.addToCart()"
+         v-else-if="!isInCart"
 
-            > 
-                
-                To cart
-    </v-btn>
+  >
 
-    <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
-            v-else
-            > 
-                In cart
-    </v-btn>
+    To cart
+  </v-btn>
 
-    <v-snackbar
-        v-model="addToCartSnackBar"
-        :timeout="2000"
-        >
-        Added to cart
+  <v-btn variant="outlined" :ripple='false' prepend-icon="mdi-cart" disabled
+         v-else
+  >
+    In cart
+  </v-btn>
 
-        <template v-slot:actions>
-            <v-btn
-            color="pink"
-            variant="text"
-            @click="addToCartSnackBar = false"
-            >
-            Close
-            </v-btn>
-        </template>
-    </v-snackbar>
+  <v-snackbar
+    v-model="addToCartSnackBar"
+    :timeout="2000"
+  >
+    Added to cart
+
+    <template v-slot:actions>
+      <v-btn
+        color="pink"
+        variant="text"
+        @click="addToCartSnackBar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
-<script>
 
+<style scoped>
 
-export default {
-
-    props:{
-        isInCart : Boolean,
-        inStock : Boolean
-    },
-    emits:{
-        cartBtn : null
-    },
-    data() {
-        return {
-            addToCartSnackBar : false
-        }
-    },
-    methods:{
-        addToCart(){
-            this.$emit('cartBtn')
-            this.addToCartSnackBar = true
-        }
-    }
-}
-</script>
-<style>
-    
 </style>
