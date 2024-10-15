@@ -4,11 +4,13 @@ import Product from "@/types/product.types";
 import { addProductToCart } from '@/services/cart/addProductToCart'
 import { updateQuantity } from '@/services/cart/updateQuantity'
 import { removeProduct } from '@/services/cart/removeProduct'
+import {updateSelection} from "@/services/cart/updateSelection";
 
 
 interface CartProduct extends Product{
-    isSelected : boolean;
+    selected : boolean;
     quantity : number;
+
 }
 
 interface CartState{
@@ -30,7 +32,7 @@ export const useCartStore = defineStore("cart", {
         getTotalPrice(state): string {
             let price = 0;
             state.products.forEach((product) => {
-                if (product.isSelected && product.price && product.quantity) {
+                if (product.selected && product.price && product.quantity) {
                     price += product.price * product.quantity;
                 }
             });
@@ -58,7 +60,7 @@ export const useCartStore = defineStore("cart", {
 
             await addProductToCart(productId)
             this.products.push({
-                isSelected: true,
+                selected: true,
                 quantity: 1,
                 id : productId
             });
@@ -79,10 +81,11 @@ export const useCartStore = defineStore("cart", {
                 await removeProduct(productId)
             }
         },
-        switchSelection(productId : number) {
+        async switchSelection(productId : number) {
             const ind = this.products.findIndex((item) => item.id === productId);
             if (ind !== -1) {
-                this.products[ind].isSelected = !this.products[ind].isSelected;
+                this.products[ind].selected = !this.products[ind].selected;
+                await updateSelection(productId, this.products[ind].selected!)
             }
         },
 

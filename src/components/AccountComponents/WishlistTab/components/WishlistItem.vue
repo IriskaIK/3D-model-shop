@@ -20,7 +20,6 @@ export default defineComponent({
   props:{
     name:String,
     price: Number,
-    currency: String,
     src: String,
     productID : { type : Number, required: true },
     quantity : Number,
@@ -52,10 +51,10 @@ export default defineComponent({
     <td> {{name}}</td>
     <td>
       <div class='price-holder'>
-        {{price}}
-        <div class='price-currency'>
-          {{currency}}
-        </div>
+        {{price}}$
+<!--        <div class='price-currency'>-->
+<!--          $-->
+<!--        </div>-->
       </div>
     </td>
 

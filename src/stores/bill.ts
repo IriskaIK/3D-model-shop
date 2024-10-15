@@ -1,5 +1,9 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import placeOrder from "@/services/orders/placeOrder";
+import {City} from "@/services/delivery/getCitiesByRegionId";
+import {Region} from "@/services/delivery/getRegions";
+import {PostOffice} from "@/services/delivery/getPostOfficesByCityId";
 
 // Define the interfaces for the store's state types
 interface UserContacts {
@@ -11,9 +15,9 @@ interface UserContacts {
 }
 
 interface DeliveryInfo {
-  region: string;
-  city: string;
-  office: string;
+  region: Partial<Region> | null;
+  city: Partial<City> | null;
+  postOffice: Partial<PostOffice> | null;
   status: boolean;
 }
 
@@ -24,7 +28,7 @@ interface Payment {
 
 interface RecipientContacts {
   firstName: string;
-  secondName: string;
+  lastName: string;
   phone: string;
   status: boolean;
 }
@@ -44,9 +48,9 @@ export const useBillStore = defineStore("bill", {
       status: false,
     },
     deliveryInfo: {
-      region: "",
-      city: "",
-      office: "",
+      region: null,
+      city: null,
+      postOffice: null,
       status: false,
     },
     payment: {
@@ -55,7 +59,7 @@ export const useBillStore = defineStore("bill", {
     },
     recipientContacts: {
       firstName: "",
-      secondName: "",
+      lastName: "",
       phone: "",
       status: false,
     },
@@ -73,6 +77,28 @@ export const useBillStore = defineStore("bill", {
   },
 
   actions: {
-    // Add actions here
+    async orderFromCart() {
+
+      if(!(this.deliveryInfo.city?.id && this.deliveryInfo.region?.id && this.deliveryInfo.postOffice?.id)){
+        return;
+      }
+      try {
+        await placeOrder({
+          shipping_address : {
+            city_id : this.deliveryInfo.city?.id,
+            region_id : this.deliveryInfo.region.id,
+            postOffice_id : this.deliveryInfo.postOffice.id
+
+          },
+          recipient : {
+            first_name : this.recipientContacts.firstName,
+            last_name : this.recipientContacts.lastName,
+            phone : this.recipientContacts.phone,
+          }
+        })
+      }catch (e) {
+        console.error(e);
+      }
+    }
   },
 });

@@ -48,8 +48,8 @@ export const useAccountStore = defineStore('account', {
       if (state.profileData === null) return null
       return {
         region: state.profileData.shipping_address.region || null,
-        city: state.profileData.shipping_address.city || '',
-        postOffice: state.profileData.shipping_address.postOffice || ''
+        city: state.profileData.shipping_address.city || null,
+        postOffice: state.profileData.shipping_address.postOffice || null
       }
     }
   },

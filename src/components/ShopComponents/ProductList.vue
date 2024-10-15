@@ -19,7 +19,6 @@ export default defineComponent({
       <v-row>
         <v-col cols="12" lg="3" md="6" sm="6" v-for="product in productsStore.getProducts.products" :id="product.id">
           <ProductCard
-            :currency="product.currency"
             :productId="product.id"
             :tags="product.tags"
             :title="product.title"

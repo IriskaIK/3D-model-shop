@@ -8,9 +8,9 @@ interface ResponseData {
 }
 
 
-export default async function updateUserDeliveryDetails(payload : { firstName: string, lastName: string, email: string, phoneNumber: string  }) : Promise<ResponseData | null> {
+export default async function updateUserDeliveryDetails(payload : { region_id: number, city_id: number, postOffice_id: number  }) : Promise<ResponseData | null> {
   try {
-    const response : AxiosResponse<ResponseData> = await apiClient.put('/account/', payload)
+    const response : AxiosResponse<ResponseData> = await apiClient.put('/account/delivery/', payload)
     console.log(response)
     return { msg : response.data.msg, status : response.status }
   }catch(error){

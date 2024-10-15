@@ -24,7 +24,7 @@ const router = createRouter({
     },
     {
       path : '/account',
-      name : "",
+      name : "Account",
       component: AccountView,
       beforeEnter : [getCartData, getWishListData]
     },

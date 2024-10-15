@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia'
 import { useCartStore } from '@/stores/cart'
 import { Tag } from '@/types/product.types'
 import { useWishlistStore } from '@/stores/wishlist'
+import {useAccountStore} from "@/stores/account";
 
 export default defineComponent({
   name: 'ProductCard',
@@ -14,10 +15,10 @@ export default defineComponent({
   setup() {
     const cartStore = useCartStore()
     const wishlistStore = useWishlistStore()
-
+    const accountStore = useAccountStore()
     const getWithListProductById = storeToRefs(wishlistStore).getProductById
     const getCartProductById = storeToRefs(cartStore).getProductById
-    return {cartStore, wishlistStore, getWithListProductById, getCartProductById}
+    return {cartStore, wishlistStore, getWithListProductById, getCartProductById, accountStore}
   },
 
   props:{
@@ -27,15 +28,25 @@ export default defineComponent({
     price: { type :Number, required:true },
     tags : Array<Tag>,
     productId: {type : Number, required:true },
-    currency : { type : String, required:true },
+    // currency : { type : String, required:true },
     inStock : Boolean,
     isInProductPage : Boolean
   },
   methods:{
     async addToCart(){
+      if(!this.accountStore.isAuthenticated){
+        this.$router.push('/login')
+        return;
+      }
+
       await this.cartStore.addProduct(this.productId)
     },
     async addToWishList(){
+      if(!this.accountStore.isAuthenticated){
+        this.$router.push('/login')
+        return;
+      }
+
       await  this.wishlistStore.addProduct(this.productId)
     },
     getImagePath(){
@@ -76,7 +87,7 @@ export default defineComponent({
         {{title}}
         <v-spacer></v-spacer>
         <div class="product-price">
-          {{price}} {{currency}}
+          {{price}} $
         </div>
 
 

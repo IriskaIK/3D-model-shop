@@ -10,8 +10,8 @@ export default defineComponent({
   data() {
     return {
       userData:{
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         phone:'',
       },
 
@@ -28,11 +28,11 @@ export default defineComponent({
       this.valids.phone = content.valid
     },
     saveFirstNameValue(content : {value : string, valid : boolean}){
-      this.userData.firstname = content.value
+      this.userData.firstName = content.value
       this.valids.firstname = content.valid
     },
     saveLastNameValue(content : {value : string, valid : boolean}){
-      this.userData.lastname = content.value
+      this.userData.lastName = content.value
       this.valids.lastname = content.valid
     }
   },

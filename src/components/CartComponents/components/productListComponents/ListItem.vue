@@ -21,17 +21,17 @@ export default defineComponent({
   props:{
     name:String,
     price: Number,
-    currency: String,
     src: String,
     productID : { type :  Number, required: true },
-    quantity : Number,
+    // quantity : {type : Number, required : true },
+    // selected : {type : Boolean, required:true },
   },
   methods:{
     async deleteItem(){
       await this.store.removeProduct(this.productID)
     },
-    changeSelected(){
-      this.store.switchSelection(this.productID)
+    async changeSelected(){
+      await this.store.switchSelection(this.productID)
     },
     getImagePath(){
       return "http://localhost:3000/uploads/" + this.src
@@ -56,10 +56,10 @@ export default defineComponent({
     <td> {{name}}</td>
     <td>
       <div class='price-holder'>
-        {{price}}
-        <div class='price-currency'>
-          {{currency}}
-        </div>
+        {{price}}$
+<!--        <div class='price-currency'>-->
+<!--          $-->
+<!--        </div>-->
       </div>
     </td>
 
@@ -67,7 +67,7 @@ export default defineComponent({
 
 
     <td>
-      <v-checkbox hide-details v-model='store.getProductById(productID)!.isSelected'>
+      <v-checkbox hide-details @click="changeSelected" v-model='store.getProductById(productID)!.selected'>
 
       </v-checkbox>
     </td>

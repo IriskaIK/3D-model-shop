@@ -10,15 +10,21 @@ export default defineComponent({
   },
   data(){
     return{
-      additionalCheckbox : false
+      additionalCheckbox : false,
+      showOutOfStock : false
     }
   },
+  methods : {
+    toggleStock(){
+      this.productsStore.searchOptions.inStock = this.showOutOfStock
+    }
+  }
 
 })
 </script>
 
 <template>
-  <v-checkbox v-model='productsStore.searchOptions.inStock' label="Display product, that ran out of stock"></v-checkbox>
+  <v-checkbox @click='toggleStock' v-model='showOutOfStock' label="Display product, that ran out of stock"></v-checkbox>
   <v-checkbox v-model='additionalCheckbox' label="Additional checkbox"></v-checkbox>
 </template>
 

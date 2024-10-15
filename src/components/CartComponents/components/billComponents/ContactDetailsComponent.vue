@@ -3,13 +3,16 @@ import { defineComponent } from 'vue'
 import UserDetailsInput from '@/components/inputs/UserDetailsInput.vue'
 import SaveBtn from '@/components/CartComponents/components/billComponents/SaveBtn.vue'
 import { useBillStore } from '@/stores/bill'
+import {useAccountStore} from "@/stores/account";
 
 export default defineComponent({
   name: 'ContactDetailsComponent',
   components: { SaveBtn, UserDetailsInput },
   setup(){
     const store = useBillStore()
-    return {store}
+    const accountStore = useAccountStore()
+
+    return {store, accountStore}
   },
   data() {
     return {
@@ -70,17 +73,17 @@ export default defineComponent({
     <v-container>
       <v-row>
         <v-col :cols="12" :md="6">
-          <UserDetailsInput label="First name" type="name" :disabled='false' @update='saveFirstNameValue'></UserDetailsInput>
+          <UserDetailsInput :default-value="accountStore.profileData?.first_name!" label="First name" type="name" :disabled='false' @update='saveFirstNameValue'></UserDetailsInput>
         </v-col>
         <v-col :cols="12" :md="6">
-          <UserDetailsInput label="Last name" type="name" :disabled='false' @update='saveLastNameValue'></UserDetailsInput>
+          <UserDetailsInput :default-value="accountStore.profileData?.last_name!" label="Last name" type="name" :disabled='false' @update='saveLastNameValue'></UserDetailsInput>
         </v-col>
         <v-col :cols="12" :md="6">
-          <UserDetailsInput label="Email" type="email" :disabled='false' @update='saveEmailValue'></UserDetailsInput>
+          <UserDetailsInput :default-value="accountStore.profileData?.email!" label="Email" type="email" :disabled='false' @update='saveEmailValue'></UserDetailsInput>
         </v-col>
         <v-col :cols="12" :md="6">
 
-          <UserDetailsInput label="Phone" type="phone" :disabled='false' @update='savePhoneValue'></UserDetailsInput>
+          <UserDetailsInput :default-value="accountStore.profileData?.phone!" label="Phone" type="phone" :disabled='false' @update='savePhoneValue'></UserDetailsInput>
         </v-col>
 
       </v-row>

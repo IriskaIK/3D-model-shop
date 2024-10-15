@@ -1,14 +1,16 @@
 import type Image from '@/types/image.types'
-
+import {City} from "@/services/delivery/getCitiesByRegionId";
+import {Region} from "@/services/delivery/getRegions";
+import {PostOffice} from "@/services/delivery/getPostOfficesByCityId";
 export interface ShippingAddress {
   id: number | null,
   full_address: string | null,
   region_id: number | null,
   city_id: number | null,
   postOffice_id: number | null,
-  city: string | null,
-  region: string | null,
-  postOffice: string | null
+  city: City | null,
+  region: Region | null,
+  postOffice: PostOffice | null
 }
 
 

@@ -39,7 +39,7 @@ export default defineComponent({
       </thead>
       <tbody>
 
-      <ListItem v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id!' :src='item.images![0].path' :name='item.title' :price='item.price' :currency='item.currency'></ListItem>
+      <ListItem v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id!' :src='item.images![0].path' :name='item.title' :price='item.price'></ListItem>
       <TotalPrice :totalPrice='store.getTotalPrice'></TotalPrice>
 
 

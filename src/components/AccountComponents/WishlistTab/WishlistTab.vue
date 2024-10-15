@@ -34,7 +34,7 @@ export default defineComponent({
       </thead>
       <tbody>
 
-      <WishlistItem v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id!' :src='item.images![0].path' :name='item.title' :price='item.price' :currency='item.currency'></WishlistItem>
+      <WishlistItem v-for='(item, index) in store.getProducts' :id="item.id" :productID='item.id!' :src='item.images![0].path' :name='item.title' :price='item.price' ></WishlistItem>
 
 
       </tbody>

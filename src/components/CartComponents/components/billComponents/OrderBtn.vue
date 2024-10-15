@@ -5,8 +5,10 @@ import { useBillStore } from '@/stores/bill'
 export default defineComponent({
   name: 'OrderBtn',
   methods:{
-    saveData(){
-      console.log('save data')
+    async saveData(){
+      await this.store.orderFromCart()
+      window.location.reload()
+
     }
 
   },
