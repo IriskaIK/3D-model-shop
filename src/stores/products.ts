@@ -33,7 +33,9 @@ export const useProductsStore = defineStore("shop", {
     availableCategories: [] as Category[],
     availableTags: [] as Tag[],
     currentOffset : 0,
-    range : [0, 3000]
+    range : [0, 3000],
+    min : 0,
+    max : 3000
   }),
   getters: {
     getProducts(state) {
